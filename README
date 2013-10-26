@@ -1,0 +1,13 @@
+Hello World!
+
+To add file:
+git add <file name>
+
+To commit file:
+git commit -m "message"
+
+To push to the master:
+git push
+
+To pull from the master:
+git pull
