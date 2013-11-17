@@ -1,13 +1,13 @@
-//`define DOOR1  64'h123f45a6f8e2b6c4
-//`define DOOR2  64'h87383c7a1b8e3c21
-//`define DOOR3  64'h00001111cccc1111
-//`define DOOR4  64'hffffffff0000ffff
-//`define DOOR5  64'h0101fafa0101fafa
-//`define DOOR6  64'h13579abcde246810
-//`define DOOR7  64'h13487abacdd45487
-//`define CLOSE_DOOR1  64'h0011001100110011
-//`define CLOSE_DOOR2  64'h1100110011001100
-//`define CLOSE_DOOR3  64'hffaaffbbffccffdd
+`define DOOR1  64'h123f45a6f8e2b6c4
+`define DOOR2  64'h87383c7a1b8e3c21
+`define DOOR3  64'h00001111cccc1111
+`define DOOR4  64'hffffffff0000ffff
+`define DOOR5  64'h0101fafa0101fafa
+`define DOOR6  64'h13579abcde246810
+`define DOOR7  64'h13487abacdd45487
+`define CLOSE_DOOR1  64'h0011001100110011
+`define CLOSE_DOOR2  64'h1100110011001100
+`define CLOSE_DOOR3  64'hffaaffbbffccffdd
 
 `timescale 1ns/100ps
 
