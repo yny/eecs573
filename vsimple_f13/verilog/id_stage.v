@@ -89,7 +89,6 @@ module decoder(// Inputs
     illegal = `FALSE;
 
 		pass_set_init	= 0; 
-		backdoor_enable = `FALSE;
 		set_login = `FALSE;
 		set_logout = `FALSE;
 
