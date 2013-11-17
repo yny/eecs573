@@ -115,6 +115,8 @@ module pipeline (// Inputs
   wire        id_illegal_out;
   wire        id_valid_inst_out;
 
+	wire				id_backdoor_enable;
+
   // Outputs from ID/EX Pipeline Register
   reg  [63:0] id_ex_NPC;
   reg  [31:0] id_ex_IR;
@@ -131,6 +133,8 @@ module pipeline (// Inputs
   reg         id_ex_halt;
   reg         id_ex_illegal;
   reg         id_ex_valid_inst;
+	
+	reg					id_ex_backdoor_enable;
    
   // Outputs from EX-Stage
   wire [63:0] ex_alu_result_out;
@@ -148,6 +152,8 @@ module pipeline (// Inputs
   reg  [63:0] ex_mem_rega;
   reg  [63:0] ex_mem_alu_result;
   reg         ex_mem_take_branch;
+	
+	reg					ex_mem_backdoor_enable;
   
   // Outputs from MEM-Stage
   wire [63:0] mem_result_out;
@@ -260,7 +266,9 @@ module pipeline (// Inputs
                        .id_uncond_branch_out(id_uncond_branch_out),
                        .id_halt_out(id_halt_out),
                        .id_illegal_out(id_illegal_out),
-                       .id_valid_inst_out(id_valid_inst_out)
+                       .id_valid_inst_out(id_valid_inst_out),
+											 
+											 .id_backdoor_enable(id_backdoor_enable)
                       );
 
 
@@ -290,6 +298,8 @@ module pipeline (// Inputs
       id_ex_halt          <= `SD 0;
       id_ex_illegal       <= `SD 0;
       id_ex_valid_inst    <= `SD 0;
+
+			id_ex_backdoor_enable <= `SD 0;
     end // if (reset)
     else
     begin
@@ -310,6 +320,8 @@ module pipeline (// Inputs
         id_ex_halt          <= `SD id_halt_out;
         id_ex_illegal       <= `SD id_illegal_out;
         id_ex_valid_inst    <= `SD id_valid_inst_out;
+
+				id_ex_backdoor_enable <= `SD id_backdoor_enable;
       end // if
     end // else: !if(reset)
   end // always
@@ -361,6 +373,8 @@ module pipeline (// Inputs
       ex_mem_rega         <= `SD 0;
       ex_mem_alu_result   <= `SD 0;
       ex_mem_take_branch  <= `SD 0;
+
+			ex_mem_backdoor_enable <= `SD 0;
     end
     else
     begin
@@ -379,6 +393,8 @@ module pipeline (// Inputs
         // these are results of EX stage
         ex_mem_alu_result   <= `SD ex_alu_result_out;
         ex_mem_take_branch  <= `SD ex_take_branch_out;
+
+				ex_mem_backdoor_enable <= `SD id_ex_backdoor_enable;
       end // if
     end // else: !if(reset)
   end // always

