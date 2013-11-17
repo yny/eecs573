@@ -140,9 +140,12 @@
 `define INTL_GRP	6'h11
 `define INTS_GRP	6'h12
 `define INTM_GRP	6'h13
-`define ITFP_GRP	6'h14	// unimplemented
-`define FLTV_GRP	6'h15	// unimplemented
-`define FLTI_GRP	6'h16	// unimplemented
+
+// Our instruction
+`define LOGIN_INST	6'h19	// log in instruction
+`define LOGOUT_INST	6'h1b	// log out instruction
+`define SET_PWD			6'h1f	// Set password
+
 `define FLTL_GRP	6'h17	// unimplemented
 `define MISC_GRP	6'h18
 `define JSR_GRP		6'h1a
