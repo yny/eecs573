@@ -261,6 +261,8 @@ begin
             $display("@@@ System halted on HALT instruction");
         `HALTED_ON_ILLEGAL:
             $display("@@@ System halted on illegal instruction");
+        `HALTED_ON_DATA_PROTECTED:
+            $display("@@@ System halted on illigal data access( ERROR:DATA PROTECTED )");
         default: 
             $display("@@@ System halted on unknown error code %x",
                      pipeline_error_status);

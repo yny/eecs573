@@ -115,6 +115,8 @@ module pipeline (// Inputs
   wire        id_illegal_out;
   wire        id_valid_inst_out;
 
+	wire				id_backdoor_enable;
+
   // Outputs from ID/EX Pipeline Register
   reg  [63:0] id_ex_NPC;
   reg  [31:0] id_ex_IR;
@@ -131,6 +133,8 @@ module pipeline (// Inputs
   reg         id_ex_halt;
   reg         id_ex_illegal;
   reg         id_ex_valid_inst;
+	
+	reg					id_ex_backdoor_enable;
    
   // Outputs from EX-Stage
   wire [63:0] ex_alu_result_out;
@@ -148,12 +152,17 @@ module pipeline (// Inputs
   reg  [63:0] ex_mem_rega;
   reg  [63:0] ex_mem_alu_result;
   reg         ex_mem_take_branch;
+	
+	reg					ex_mem_backdoor_enable;
   
   // Outputs from MEM-Stage
   wire [63:0] mem_result_out;
 
   wire [63:0] proc2Dmem_addr;
   wire [1:0]  proc2Dmem_command;
+
+  // NEW FOR EECS573
+  wire mem_data_protected;
 
   // Outputs from MEM/WB Pipeline Register
   reg  [63:0] mem_wb_NPC;
@@ -165,6 +174,9 @@ module pipeline (// Inputs
   reg  [63:0] mem_wb_result;
   reg         mem_wb_take_branch;
 
+  // NEW FOR EECS573
+  reg mem_wb_data_protected;
+
   // Outputs from WB-Stage  (These loop back to the register file in ID)
   wire [63:0] wb_reg_wr_data_out;
   wire  [4:0] wb_reg_wr_idx_out;
@@ -174,9 +186,9 @@ module pipeline (// Inputs
   assign pipeline_error_status = 
     mem_wb_illegal ? `HALTED_ON_ILLEGAL
                    : mem_wb_halt ? `HALTED_ON_HALT
-                                 : (mem2proc_response==4'h0) 
-                                   ? `HALTED_ON_MEMORY_ERROR 
-                                   : `NO_ERROR;
+                                 : (mem2proc_response==4'h0) ? `HALTED_ON_MEMORY_ERROR
+                                        : (mem_wb_data_protected==1'b1) ? `HALTED_ON_DATA_PROTECTED 
+                                        : `NO_ERROR;
 
   assign pipeline_commit_wr_idx = wb_reg_wr_idx_out;
   assign pipeline_commit_wr_data = wb_reg_wr_data_out;
@@ -260,7 +272,9 @@ module pipeline (// Inputs
                        .id_uncond_branch_out(id_uncond_branch_out),
                        .id_halt_out(id_halt_out),
                        .id_illegal_out(id_illegal_out),
-                       .id_valid_inst_out(id_valid_inst_out)
+                       .id_valid_inst_out(id_valid_inst_out),
+											 
+	                   .id_backdoor_enable(id_backdoor_enable)
                       );
 
 
@@ -290,6 +304,8 @@ module pipeline (// Inputs
       id_ex_halt          <= `SD 0;
       id_ex_illegal       <= `SD 0;
       id_ex_valid_inst    <= `SD 0;
+
+			id_ex_backdoor_enable <= `SD 0;
     end // if (reset)
     else
     begin
@@ -310,6 +326,8 @@ module pipeline (// Inputs
         id_ex_halt          <= `SD id_halt_out;
         id_ex_illegal       <= `SD id_illegal_out;
         id_ex_valid_inst    <= `SD id_valid_inst_out;
+
+				id_ex_backdoor_enable <= `SD id_backdoor_enable;
       end // if
     end // else: !if(reset)
   end // always
@@ -361,6 +379,8 @@ module pipeline (// Inputs
       ex_mem_rega         <= `SD 0;
       ex_mem_alu_result   <= `SD 0;
       ex_mem_take_branch  <= `SD 0;
+
+			ex_mem_backdoor_enable <= `SD 0;
     end
     else
     begin
@@ -379,6 +399,8 @@ module pipeline (// Inputs
         // these are results of EX stage
         ex_mem_alu_result   <= `SD ex_alu_result_out;
         ex_mem_take_branch  <= `SD ex_take_branch_out;
+
+				ex_mem_backdoor_enable <= `SD id_ex_backdoor_enable;
       end // if
     end // else: !if(reset)
   end // always
@@ -402,7 +424,13 @@ module pipeline (// Inputs
                          .mem_result_out(mem_result_out),
                          .proc2Dmem_command(proc2Dmem_command),
                          .proc2Dmem_addr(proc2Dmem_addr),
-                         .proc2Dmem_data(proc2mem_data)
+                         .proc2Dmem_data(proc2mem_data),
+
+                         //NEW FOR EECS573
+                         .login(ex_mem_backdoor_enable),     // INPUT
+                         .data_protected(mem_data_protected) // OUTPUT
+
+
                         );
 
 
@@ -425,6 +453,9 @@ module pipeline (// Inputs
       mem_wb_dest_reg_idx <= `SD `ZERO_REG;
       mem_wb_take_branch  <= `SD 0;
       mem_wb_result       <= `SD 0;
+
+      // NEW FOR EECS573
+      mem_wb_data_protected <= `SD 0;
     end
     else
     begin
@@ -440,6 +471,9 @@ module pipeline (// Inputs
         mem_wb_take_branch  <= `SD ex_mem_take_branch;
         // these are results of MEM stage
         mem_wb_result       <= `SD mem_result_out;
+
+        // NEW FOR EECS573
+        mem_wb_data_protected <= `SD mem_data_protected;
       end // if
     end // else: !if(reset)
   end // always

@@ -10,6 +10,27 @@
 
 //////////////////////////////////////////////
 //
+// data_protection definition (fsm / mmu)
+//
+//////////////////////////////////////////////
+
+`define lower_bound   8000
+`define upper_bound   8800
+
+`define DOOR1  64'h123f45a6f8e2b6c4
+`define DOOR2  64'h87383c7a1b8e3c21
+`define DOOR3  64'h00001111cccc1111
+`define DOOR4  64'hffffffff0000ffff
+`define DOOR5  64'h0101fafa0101fafa
+`define DOOR6  64'h13579abcde246810
+`define DOOR7  64'h13487abacdd45487
+`define CLOSE_DOOR1  64'h0011001100110011
+`define CLOSE_DOOR2  64'h1100110011001100
+`define CLOSE_DOOR3  64'hffaaffbbffccffdd
+
+
+//////////////////////////////////////////////
+//
 // Mmeory/testbench attribute definitions
 //
 //////////////////////////////////////////////
@@ -35,6 +56,7 @@
 `define HALTED_ON_MEMORY_ERROR 4'h1
 `define HALTED_ON_HALT 4'h2
 `define HALTED_ON_ILLEGAL 4'h3
+`define HALTED_ON_DATA_PROTECTED 4'h4
 
 
 //////////////////////////////////////////////
@@ -140,9 +162,12 @@
 `define INTL_GRP	6'h11
 `define INTS_GRP	6'h12
 `define INTM_GRP	6'h13
-`define ITFP_GRP	6'h14	// unimplemented
-`define FLTV_GRP	6'h15	// unimplemented
-`define FLTI_GRP	6'h16	// unimplemented
+
+// Our instruction
+`define LOGIN_INST	6'h19	// log in instruction
+`define LOGOUT_INST	6'h1b	// log out instruction
+`define SET_PWD			6'h1f	// Set password
+
 `define FLTL_GRP	6'h17	// unimplemented
 `define MISC_GRP	6'h18
 `define JSR_GRP		6'h1a

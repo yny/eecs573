@@ -1,5 +1,5 @@
-`define lower_bound	8000
-`define upper_bound	8800
+//`define lower_bound	8000
+//`define upper_bound	8800
 
 module mmu ( // Inputs
 		proc2mem_addr,
