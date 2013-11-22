@@ -166,7 +166,7 @@
 // Our instruction
 `define LOGIN_INST	6'h19	// log in instruction
 `define LOGOUT_INST	6'h1b	// log out instruction
-`define SET_PWD			6'h1f	// Set password
+`define SET_PWD		6'h1f	// Set password
 
 `define FLTL_GRP	6'h17	// unimplemented
 `define MISC_GRP	6'h18
@@ -300,3 +300,10 @@
 `define JSR_INST	2'h1
 `define RET_INST	2'h2
 `define JSR_CO_INST	2'h3
+
+//Security Mode
+`define OTHERS		2'b00
+`define SET_PASS	2'b01
+`define LOGIN		2'b10
+`define LOGOUT		2'b11
+

@@ -18,79 +18,92 @@
   // This is a *combinational* module (basically a PLA).
   //
 module decoder(// Inputs
-							 clk,
-							 reset,
-               inst,
-               valid_inst_in,  // ignore inst when low, outputs will
-                               // reflect noop (except valid_inst)
+		clk,
+		reset,
+		inst,
+		valid_inst_in,  // ignore inst when low, outputs will
+		// reflect noop (except valid_inst)
 
-               // Outputs
-               opa_select,
-               opb_select,
-               alu_func,
-               dest_reg,
-               rd_mem,
-               wr_mem,
-               cond_branch,
-               uncond_branch,
-               halt,           // non-zero on a halt
-               illegal,        // non-zero on an illegal instruction 
-               valid_inst,     // for counting valid instructions executed
-                               // and for making the fetch stage die on halts/
-                               // keeping track of when to allow the next
-                               // instruction out of fetch
-                               // 0 for HALT and illegal instructions (die on halt)
-							 backdoor_enable
-              );
+		// Outputs
+		opa_select,
+		opb_select,
+		alu_func,
+		dest_reg,
+		rd_mem,
+		wr_mem,
+		cond_branch,
+		uncond_branch,
+		halt,           // non-zero on a halt
+		illegal,        // non-zero on an illegal instruction 
+		valid_inst,     // for counting valid instructions executed
+		// and for making the fetch stage die on halts/
+		// keeping track of when to allow the next
+		// instruction out of fetch
+		// 0 for HALT and illegal instructions (die on halt)
+		//for debug
+		pass_set_reg,
+		password,
+		//login_reg,
+		access_enable
+		);
 
-  input [31:0] inst;
-  input valid_inst_in, clk, reset;
+	      input [31:0] inst;
+	      input valid_inst_in, clk, reset;
 
-  output [1:0] opa_select, opb_select, dest_reg; // mux selects
-  output [4:0] alu_func;
-  output rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal, valid_inst;
+	      output [1:0] opa_select, opb_select, dest_reg; // mux selects
+	      output [4:0] alu_func;
+	      output rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal, valid_inst;
 
-	// Output to enable/disable the backdoor
-	output backdoor_enable;
+	      // Output to enable/disable the access
+	      output access_enable;
 
-  reg [1:0] opa_select, opb_select, dest_reg; // mux selects
-  reg [4:0] alu_func;
-  reg rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal;
+	      reg [1:0] opa_select, opb_select, dest_reg; // mux selects
+	      reg [4:0] alu_func;
+	      reg rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal;
 
-	// REG to store the password
-	reg [20:0] password;
-	reg pass_set_reg; // to indicate whether the password has been set
-	reg pass_set_init;
-	reg set_login;
-	reg set_logout;
-	reg login_reg; // to indicate whether there's user has logged in
+	      //New signals for security issue
+	      ///////////////////////////////////////////////////////////////////////////////
+	      reg [1:0]secure_mode;
+	      //reg pass_set_init;	//Signal the system to set password
+	      //reg set_login;		//Signal the system to enter login mode
+	      //reg set_logout;		//Signal the system to enter logout mode
+	      //reg secure_insn;	//Signal the system the current insn is security related
 
-  assign valid_inst = valid_inst_in & ~illegal;
+	      output reg [20:0] password;	//Reg to save the one time set password
+	      output reg pass_set_reg; 	//Reg to indicate whether the password has been set
+	      //output reg login_reg; 		//Reg to indicate whether there's user has logged in
+	      ///////////////////////////////////////////////////////////////////////////////
 
-	assign backdoor_enable = login_reg;
+	      assign valid_inst = valid_inst_in & ~illegal;
 
-  always @*
-  begin
-      // default control values:
-      // - valid instructions must override these defaults as necessary.
-      //   opa_select, opb_select, and alu_func should be set explicitly.
-      // - invalid instructions should clear valid_inst.
-      // - These defaults are equivalent to a noop
-      // * see sys_defs.vh for the constants used here
-    opa_select = 0;
-    opb_select = 0;
-    alu_func = 0;
-    dest_reg = `DEST_NONE;
-    rd_mem = `FALSE;
-    wr_mem = `FALSE;
-    cond_branch = `FALSE;
-    uncond_branch = `FALSE;
-    halt = `FALSE;
-    illegal = `FALSE;
+	      assign access_enable = (secure_mode == `LOGIN) ? 1'b1 : 1'b0;
 
-		pass_set_init	= 0; 
-		set_login = `FALSE;
-		set_logout = `FALSE;
+	      always @*
+	      begin
+	      // default control values:
+	      // - valid instructions must override these defaults as necessary.
+	      //   opa_select, opb_select, and alu_func should be set explicitly.
+	      // - invalid instructions should clear valid_inst.
+	      // - These defaults are equivalent to a noop
+	      // * see sys_defs.vh for the constants used here
+	      opa_select = 0;
+	      opb_select = 0;
+	      alu_func = 0;
+	      dest_reg = `DEST_NONE;
+	      rd_mem = `FALSE;
+	      wr_mem = `FALSE;
+	      cond_branch = `FALSE;
+	      uncond_branch = `FALSE;
+	      halt = `FALSE;
+	      illegal = `FALSE;
+
+	      //////////////////////////////////////////////////////
+	      secure_mode	= `OTHERS;
+	      //pass_set_init	= `FALSE; 
+	      //set_login 	= `FALSE;
+	      //set_logout 	= `FALSE;
+	      //secure_insn 	= `FALSE;
+	      //////////////////////////////////////////////////////
 
     if(valid_inst_in)
     begin
@@ -152,9 +165,9 @@ module decoder(// Inputs
           end
            
         6'h18:
-          case (inst[31:26])
-            `MISC_GRP:       illegal = `TRUE; // unimplemented
-            `JSR_GRP:
+	case (inst[31:26])
+	`MISC_GRP:       illegal = `TRUE; // unimplemented
+	`JSR_GRP:
                begin
                  // JMP, JSR, RET, and JSR_CO have identical semantics
                  opa_select = `ALU_OPA_IS_NOT3;
@@ -163,33 +176,32 @@ module decoder(// Inputs
                  dest_reg = `DEST_IS_REGA;
                  uncond_branch = `TRUE;
                end
-            `FTPI_GRP:       illegal = `TRUE;       // unimplemented
+	`FTPI_GRP:       illegal = `TRUE;       // unimplemented
 
-						// This part is added to decode the LOGIN_INST
-						`LOGIN_INST:
-								begin
-									if (inst[20:0] == password)
-										set_login = `TRUE;
-									else
-										halt = `TRUE;
-								end
-										
-						`LOGOUT_INST:
-								begin
-									if (login_reg)
-										set_logout = `TRUE;
-									else
-										halt = `TRUE;
-								end
+	// This part is added to decode the LOGIN_INST
+	`LOGIN_INST:
+		begin
+		  if (inst[20:0] == password)
+			secure_mode = `LOGIN;
+			//set_login = `TRUE;
+		  else
+			halt = `TRUE;
+		end
+					
+	`LOGOUT_INST:
+		begin
+			secure_mode = `LOGOUT;
+			//set_logout = `TRUE;
+		end
 
-						`SET_PWD:
-								begin
-									if (~pass_set_reg)
-										pass_set_init = 1;	
-									else
-										halt = `TRUE;
-								end					
-
+	`SET_PWD:
+		begin
+		  if (~pass_set_reg)
+			secure_mode = `SET_PASS;
+			//pass_set_init = `TRUE;	
+		  else
+			halt = `TRUE;
+		end					
            endcase // case(inst[31:26])
            
         6'h08, 6'h20, 6'h28:
@@ -245,19 +257,43 @@ module decoder(// Inputs
 	begin
 		if (reset)
 		begin
-			pass_set_reg <= 1'b0;
-			login_reg <= 1'b0;
+			pass_set_reg 	<= `SD 1'b0;
+			password	<= `SD 21'hx;
+			//login_reg 	<= `SD 1'b0;
 		end
-		else if (pass_set_init && ~halt)
-		begin
-			pass_set_reg <= pass_set_init;
-			password <= inst[20:0];
-		end
-		else if (set_login)
-			login_reg <= 1'b1;
-		else if (set_logout)
-			login_reg <= 1'b0;
-	end
+
+		else 
+			case(secure_mode)
+	
+			`SET_PASS:
+			begin
+				pass_set_reg 	<= `SD 1'b1;
+				password 	<= `SD inst[20:0];
+			end
+			//`LOGIN:
+			//	login_reg 	<= `SD 1'b1;
+			//`LOGOUT:
+			//	login_reg 	<= `SD 1'b0;
+			endcase
+		end	
+
+//	always @(posedge clk)
+//	begin
+//		if (reset)
+//		begin
+//			pass_set_reg <= 1'b0;
+//			login_reg <= 1'b0;
+//		end
+//		else if (pass_set_init && ~halt)
+//		begin
+//			pass_set_reg <= pass_set_init;
+//			password <= inst[20:0];
+//		end
+//		else if (set_login)
+//			login_reg <= 1'b1;
+//		else if (set_logout)
+//			login_reg <= 1'b0;
+//	end
    
 endmodule // decoder
 
@@ -287,7 +323,7 @@ module id_stage(
               id_illegal_out,
               id_valid_inst_out,
 
-							id_backdoor_enable
+							id_access_enable
               );
 
 
@@ -315,12 +351,17 @@ module id_stage(
   output        id_illegal_out;
   output        id_valid_inst_out;    // is inst a valid instruction to be 
                                       // counted for CPI calculations?
-	output				id_backdoor_enable;
+	output				id_access_enable;
    
   wire    [1:0] dest_reg_select;
   reg     [4:0] id_dest_reg_idx_out;     // not state: behavioral mux output
    
-    // instruction fields read from IF/ID pipeline register
+  //for debug
+	      wire [20:0] password;	//Reg to save the one time set password
+	      wire pass_set_reg; 	//Reg to indicate whether the password has been set
+	      wire login_reg; 		//Reg to indicate whether there's user has logged in
+    
+// instruction fields read from IF/ID pipeline register
   wire    [4:0] ra_idx = if_id_IR[25:21];   // inst operand A register index
   wire    [4:0] rb_idx = if_id_IR[20:16];   // inst operand B register index
   wire    [4:0] rc_idx = if_id_IR[4:0];     // inst operand C register index
@@ -358,8 +399,11 @@ module id_stage(
                      .illegal(id_illegal_out),
                      .valid_inst(id_valid_inst_out),
 
+			.pass_set_reg(pass_set_reg),
+			.password(password),
+			//.login_reg(login_reg),
 										 // Added output
-										 .backdoor_enable(id_backdoor_enable)
+		     .access_enable(id_access_enable)
                     );
 
      // mux to generate dest_reg_idx based on
