@@ -39,7 +39,9 @@ SIMFILES =	verilog/pipeline.v	\
 		verilog/id_stage.v	\
 		verilog/ex_stage.v	\
 		verilog/mem_stage.v	\
-		verilog/wb_stage.v	
+		verilog/wb_stage.v	\
+		verilog/mmu.v		\
+		verilog/fsm.v
 SYNFILES = synth/pipeline.vg
 
 # For visual debugger

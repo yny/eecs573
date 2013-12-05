@@ -68,6 +68,9 @@ system("./vs-asm temp.s > program2.mem");
 $setnum = substr ($setpwd, 2, 5);
 $loginnum = substr ($loginpwd, 2, 5);
 
+#print $setnum, "\n";
+#print $loginnum, "\n";
+
 open INPUT_FILE, "<", "program2.mem" or die $!;
 open OUTPUT_FILE, ">", "program.mem" or die $!;
 
@@ -75,6 +78,10 @@ while ( chomp($line = <INPUT_FILE>))
 {
 	push (@inst, substr ($line, 0, 8), substr ($line, 8, 8));
 }
+
+print	(@inst + ($setrow != 0) + ($loginrow != 0) + ($logoutrow != 0)), "\n";
+print $setrow, "\n";
+print $loginrow, "\n";
 
 for ( $i = 1; $i <= @inst + ($setrow != 0) + ($loginrow != 0) + ($logoutrow != 0); $i ++ )
 {
@@ -111,8 +118,8 @@ for ( $i = 0; $i < @final; $i ++ )
 	}
 }
 
-system("rm -f program2.mem");
-system("rm -f temp.s");
+#system("rm -f program2.mem");
+#system("rm -f temp.s");
 close INPUT_FILE or die $!;			
 close OUTPUT_FILE or die $!;
 

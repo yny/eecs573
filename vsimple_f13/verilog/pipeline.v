@@ -274,7 +274,7 @@ module pipeline (// Inputs
                        .id_illegal_out(id_illegal_out),
                        .id_valid_inst_out(id_valid_inst_out),
 											 
-	                   .id_backdoor_enable(id_backdoor_enable)
+	                   .id_access_enable(id_backdoor_enable)
                       );
 
 

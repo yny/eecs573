@@ -43,8 +43,8 @@ module decoder(// Inputs
 		//for debug
 		pass_set_reg,
 		password,
-		//login_reg,
-		access_enable
+		login_reg
+		//access_enable
 		);
 
 	      input [31:0] inst;
@@ -55,7 +55,7 @@ module decoder(// Inputs
 	      output rd_mem, wr_mem, cond_branch, uncond_branch, halt, illegal, valid_inst;
 
 	      // Output to enable/disable the access
-	      output access_enable;
+	      //output access_enable;
 
 	      reg [1:0] opa_select, opb_select, dest_reg; // mux selects
 	      reg [4:0] alu_func;
@@ -71,7 +71,7 @@ module decoder(// Inputs
 
 	      output reg [20:0] password;	//Reg to save the one time set password
 	      output reg pass_set_reg; 	//Reg to indicate whether the password has been set
-	      //output reg login_reg; 		//Reg to indicate whether there's user has logged in
+	      output reg login_reg; 		//Reg to indicate whether there's user has logged in
 	      ///////////////////////////////////////////////////////////////////////////////
 
 	      assign valid_inst = valid_inst_in & ~illegal;
@@ -259,7 +259,7 @@ module decoder(// Inputs
 		begin
 			pass_set_reg 	<= `SD 1'b0;
 			password	<= `SD 21'hx;
-			//login_reg 	<= `SD 1'b0;
+			login_reg 	<= `SD 1'b0;
 		end
 
 		else 
@@ -270,10 +270,10 @@ module decoder(// Inputs
 				pass_set_reg 	<= `SD 1'b1;
 				password 	<= `SD inst[20:0];
 			end
-			//`LOGIN:
-			//	login_reg 	<= `SD 1'b1;
-			//`LOGOUT:
-			//	login_reg 	<= `SD 1'b0;
+			`LOGIN:
+				login_reg 	<= `SD 1'b1;
+			`LOGOUT:
+				login_reg 	<= `SD 1'b0;
 			endcase
 		end	
 
@@ -401,9 +401,9 @@ module id_stage(
 
 			.pass_set_reg(pass_set_reg),
 			.password(password),
-			//.login_reg(login_reg),
+			.login_reg(id_access_enable)
 										 // Added output
-		     .access_enable(id_access_enable)
+		     //.access_enable(id_access_enable)
                     );
 
      // mux to generate dest_reg_idx based on
