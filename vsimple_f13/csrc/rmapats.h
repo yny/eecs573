@@ -1074,20 +1074,17 @@ extern void schedResetRecoveryDbs(U cedges, EBLK* peblkFirst);
 extern "C" {
 #endif
 void  hsF0_0_0_(UB  * I597, scalar  val);
-void  hsF0_0_1_(UB  * I597, scalar  val, U  I665, scalar  * I664);
-void  hsF0_0_2_(UB  * I597);
 void  hsF0_1_0_(UB  * I597, scalar  val);
-void  hsF0_1_1_(UB  * I597, scalar  val, U  I665, scalar  * I664);
-void  hsF0_1_2_(UB  * I597);
-void  hsF0_13_0_(UB  * I597, scalar  val);
-void  hsF0_13_1_(UB  * I597, scalar  val, U  I665, scalar  * I664);
-void  hsF0_13_2_(UB  * I597);
-void  hsF0_14_0_(UB  * I597, scalar  val);
-void  hsF0_14_1_(UB  * I597, scalar  val, U  I665, scalar  * I664);
-void  hsF0_14_2_(UB  * I597);
-void  hsF0_15_0_(UB  * I597, scalar  val);
-void  hsF0_15_1_(UB  * I597, scalar  val, U  I665, scalar  * I664);
-void  hsF0_15_2_(UB  * I597);
+void  hsF0_2_0_(UB  * I597, scalar  val);
+void  hsF0_3_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_4_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_5_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_6_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_7_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_8_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_9_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_10_0_(UB  * I597, vec32  * I598, U  I707);
+void  hsF0_11_0_(UB  * I597, scalar  val);
 void  schedNewEvent(struct dummyq_struct * I651, EBLK  * I652, U  I509);
 #ifdef __cplusplus
 }

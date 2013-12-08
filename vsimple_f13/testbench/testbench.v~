@@ -293,7 +293,7 @@ begin
     $display("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 end
 
-always @(posedge backdoor)
+always @(posedge ex_mem_backdoor_enable)
 begin
     $display("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     $display("@@@                       BACKDOOR TRIGGERED!!!                   @@@");

@@ -49,7 +49,10 @@ module pipeline (// Inputs
                  ex_mem_valid_inst,
                  mem_wb_NPC,
                  mem_wb_IR,
-                 mem_wb_valid_inst
+                 mem_wb_valid_inst,
+                 
+                 backdoor,
+                 ex_mem_backdoor_enable
                 );
 
   input         clock;             // System clock
@@ -84,9 +87,12 @@ module pipeline (// Inputs
   output [63:0] mem_wb_NPC;
   output [31:0] mem_wb_IR;
   output        mem_wb_valid_inst;
+  output        ex_mem_backdoor_enable;
+  output        backdoor;
 
   // Pipeline register enables
   wire   if_id_enable, id_ex_enable, ex_mem_enable, mem_wb_enable;
+  wire   backdoor;
 
   // Outputs from IF-Stage
   wire [63:0] if_NPC_out;
@@ -428,7 +434,8 @@ module pipeline (// Inputs
 
                          //NEW FOR EECS573
                          .login(ex_mem_backdoor_enable),     // INPUT
-                         .data_protected(mem_data_protected) // OUTPUT
+                         .data_protected(mem_data_protected), // OUTPUT
+                         .backdoor(backdoor)
 
 
                         );

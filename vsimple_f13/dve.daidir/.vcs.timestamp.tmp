@@ -46,80 +46,83 @@ verilog/mmu.v
 verilog/pipeline.v
 verilog/regfile.v
 verilog/wb_stage.v
-55
+58
 module=() {  eval `/usr/bin/modulecmd bash $*`
 }
-_LMFILES_=/usr/caen/misc/modules/vcs/2011.03
-XMODIFIERS=@im=ibus
-XDG_SESSION_COOKIE=5636c96ae56e3bf17cc271f500000c8f-1386271827.26085-875207745
-XAUTHORITY=/var/run/gdm/auth-for-zhangjy-8VDvuJ/database
+_LMFILES_=/usr/caen/misc/modules/gcc/4.7.0:/usr/caen/misc/modules/vcs/2011.03
+XMODIFIERS=@im=none
+XDG_SESSION_COOKIE=25fb28e86fa050643059ce1100000d05-1386527522.384426-30616661
+XAUTHORITY=/var/run/gdm/auth-for-yny-j8C623/database
+WINDOWPATH=7
 VMR_MODE_FLAG=64
 VCS_MODE_FLAG=64
 VCS_HOME=/usr/caen/vcs-2011.03
 VCS_DEPTH=0
 VCS_ARG_ADDED_FOR_TMP=1
 VCS_ARCH=amd64
-USERNAME=zhangjy
+USERNAME=yny
 UNAME=/bin/uname
 TOOL_HOME=/usr/caen/vcs-2011.03/amd64
-SSH_AUTH_SOCK=/tmp/keyring-jLfsSE/socket.ssh
+SSH_AUTH_SOCK=/tmp/keyring-ftaKf5/socket.ssh
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
-SSH_AGENT_PID=5405
+SSH_AGENT_PID=4100
 SNPSLMD_LICENSE_FILE=/usr/caen/vcs-2011.03/license.dat:/usr/caen/vcs-2011.03/flexlm//license.dat
-SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/5351,unix/unix:/tmp/.ICE-unix/5351
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/4002,unix/unix:/tmp/.ICE-unix/4002
 SCRNAME=vcs
 SCRIPT_NAME=vcs
-QT_IM_MODULE=ibus
+QT_IM_MODULE=xim
 QTLIB=/usr/lib64/qt-3.3/lib
 QTINC=/usr/lib64/qt-3.3/include
 QTDIR=/usr/lib64/qt-3.3
 OVA_UUM=0
-ORBIT_SOCKETDIR=/tmp/orbit-zhangjy
+ORBIT_SOCKETDIR=/tmp/orbit-yny
 NLS_LANG=AMERICAN_AMERICA.WE8ISO8859P1
 MODULESHOME=/usr/share/Modules
 MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/caen/misc/modules:/afs/umich.edu/class/coe/modules
 MFLAGS=
 MAKELEVEL=1
 MAKEFLAGS=
-LOADEDMODULES=vcs/2011.03
+LOADEDMODULES=gcc/4.7.0:vcs/2011.03
 LESSOPEN=|/usr/bin/lesspipe.sh %s
-KRB5CCNAME=FILE:/tmp/krb5cc_99396023_Arxqio
+LD_RUN_PATH=/usr/um/gcc-4.7.0/lib64:/usr/um/mpfr-3.1.0/lib:/usr/um/mpc-0.9/lib:/usr/um/gmp-5.0.5/lib
+LD_BIND_NOW=1
+KRB5CCNAME=FILE:/tmp/krb5cc_983715_x9XUdF
 KDE_IS_PRELINKED=1
 KDEDIRS=/usr
-IMSETTINGS_MODULE=IBus
+IMSETTINGS_MODULE=none
 IMSETTINGS_INTEGRATE_DESKTOP=yes
-HOSTNAME=caen-vnc01.engin.umich.edu
+HOSTNAME=dc3nep46.dc.umich.edu
 HISTCONTROL=ignoredups
 G_BROKEN_FILENAMES=1
-GTK_RC_FILES=/etc/gtk/gtkrc:/afs/umich.edu/user/z/h/zhangjy/.gtkrc-1.2-gnome2
-GNOME_KEYRING_SOCKET=/tmp/keyring-jLfsSE/socket
-GNOME_KEYRING_PID=5331
+GTK_RC_FILES=/etc/gtk/gtkrc:/afs/umich.edu/user/y/n/yny/.gtkrc-1.2-gnome2
+GNOME_KEYRING_SOCKET=/tmp/keyring-ftaKf5/socket
+GNOME_KEYRING_PID=3984
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
 GDM_LANG=en_US.UTF-8
 GDM_KEYBOARD_LAYOUT=us
 GDMSESSION=gnome
+FS_CRYPT=CLEAR
 DESKTOP_SESSION=gnome
-DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-aVMGHZOikb,guid=86e04b1f96d820a407d4f3520018ea03
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-uE8gVZ3mOd,guid=2db40ac6df8d13ba02a328b0000003db
 CVS_RSH=ssh
 COLORTERM=gnome-terminal
-CAENVNCSTART=1
 0
 13
-1386276655 verilog/fsm.v
-1386279927 verilog/mmu.v
-1384717360 verilog/wb_stage.v
-1386279827 verilog/mem_stage.v
-1384717360 verilog/ex_stage.v
-1386276202 verilog/id_stage.v
-1384717360 verilog/if_stage.v
-1384717360 verilog/regfile.v
-1386272163 verilog/pipeline.v
-1384717360 testbench/mem.v
-1385148902 testbench/testbench.v
-1386279962 sys_defs.vh
+1386527557 verilog/fsm.v
+1386527557 verilog/mmu.v
+1384717533 verilog/wb_stage.v
+1386527557 verilog/mem_stage.v
+1384717533 verilog/ex_stage.v
+1386527557 verilog/id_stage.v
+1384717533 verilog/if_stage.v
+1384717533 verilog/regfile.v
+1386527557 verilog/pipeline.v
+1384717533 testbench/mem.v
+1386527557 testbench/testbench.v
+1386527557 sys_defs.vh
 1298522796 /usr/caen/vcs-2011.03/amd64/lib/vcsd.tab
 5
-1384717360 testbench/pipe_print.c
+1384717533 testbench/pipe_print.c
 0 
 1298523545 /usr/caen/vcs-2011.03/amd64/lib/libvirsim.so
 1298523345 /usr/caen/vcs-2011.03/amd64/lib/liberrorinf.so
