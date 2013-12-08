@@ -32,10 +32,7 @@ _vcsobj_1_1.o : _vcsobj_1_1.a
 	fi
 
 
-VCS_INCR_OBJS=pre_vcsobj_1_1.o 
-
-pre_vcsobj_1_1.o : pre_vcsobj_1_1.a
-	ld -r -o $@ --whole-archive $< --no-whole-archive
+VCS_INCR_OBJS=
 
 
 

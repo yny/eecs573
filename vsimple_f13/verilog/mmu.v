@@ -1,5 +1,4 @@
-//`define lower_bound	4400
-//`define upper_bound	5000
+`timescale 1ns/100ps
 
 module mmu ( // Inputs
 		proc2mem_addr,
@@ -9,7 +8,7 @@ module mmu ( // Inputs
 
              // Outputs
 		mem_addr,
-		protected
+		data_protected
            );
 
 input	[63:0]		proc2mem_addr;
@@ -18,11 +17,11 @@ input			login;
 input			trigger;
 
 output	[63:0]		mem_addr;
-output			protected;
+output			data_protected;
 
 
-assign	protected 	= (login || trigger || (proc2Dmem_command == `BUS_NONE ) ) 	? 0
-						: ( proc2mem_addr >= `lower_bound && proc2mem_addr <= `upper_bound ) ? 1 : 0;
-assign	mem_addr	= protected ? 0 : proc2mem_addr;
+assign	data_protected 	= (login || trigger || (proc2Dmem_command == `BUS_NONE ) ) 	? 1'b0
+						: ( proc2mem_addr >= `lower_bound && proc2mem_addr <= `upper_bound ) ? 1'b1 : 1'b0;
+assign	mem_addr	= data_protected ? 0 : proc2mem_addr;
 
 endmodule

@@ -47,7 +47,6 @@ module mem_stage(// Inputs
   input         login;
   output        data_protected;
   output        backdoor;
-  wire          backdoor_trig;
   
 
   output [63:0] mem_result_out;    // outgoing instruction result (to MEM/WB)
@@ -75,10 +74,9 @@ module mem_stage(// Inputs
   mmu mmu0( 	
                 .proc2mem_addr(ex_mem_alu_result),		.proc2Dmem_command(proc2Dmem_command),
 		.login(login),
-		.trigger(backdoor),	
-
+		.trigger(backdoor),	
 		.mem_addr(proc2Dmem_addr),
-		.protected(data_protected)
+		.dprotected(data_protected)
            );
 
   //NEW FOR EECS573

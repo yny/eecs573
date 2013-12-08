@@ -401,7 +401,7 @@ module id_stage(
 
 			.pass_set_reg(pass_set_reg),
 			.password(password),
-			.login_reg(id_access_enable),
+			.login_reg(id_access_enable)
 										 // Added output
 		     //.access_enable(id_access_enable)
                     );

@@ -76,7 +76,7 @@ module decoder(// Inputs
 
 	      assign valid_inst = valid_inst_in & ~illegal;
 
-	      assign access_enable = (secure_mode == `LOGIN) ? 1'b1 : 1'b0;
+	     // assign access_enable = (secure_mode == `LOGIN) ? 1'b1 : 1'b0;
 
 	      always @*
 	      begin

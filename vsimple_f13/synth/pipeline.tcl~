@@ -20,7 +20,7 @@ suppress_message {"VER-130"}
 read_file -f sverilog [list "../sys_defs.vh" "../verilog/pipeline.v" "../verilog/if_stage.v" "../verilog/id_stage.v" "../verilog/ex_stage.v" "../verilog/mem_stage.v" "../verilog/mmu.v" "../verilog/wb_stage.v" "../verilog/regfile.v" "../verilog/fsm.v"]
 set design_name pipeline
 set clock_name clock
-set CLK_PERIOD 20
+set CLK_PERIOD 30
 
 
 #/***********************************************************/

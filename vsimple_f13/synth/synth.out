@@ -1,0 +1,1904 @@
+
+                      Design Compiler Graphical
+                            DC Ultra (TM)
+                             DFTMAX (TM)
+                         Power Compiler (TM)
+                           DesignWare (R)
+                           DC Expert (TM)
+                         Design Vision (TM)
+                          HDL Compiler (TM)
+                         VHDL Compiler (TM)
+                            DFT Compiler
+                        Library Compiler (TM)
+                         Design Compiler(R)
+
+            Version G-2012.06 for RHEL64 -- May 30, 2012
+               Copyright (c) 1988-2012 Synopsys, Inc.
+
+This software and the associated documentation are confidential and 
+proprietary to Synopsys, Inc. Your use or disclosure of this software 
+is subject to the terms and conditions of a written license agreement 
+between you, or your company, and Synopsys, Inc.
+
+Initializing...
+#/***********************************************************/
+#/*   FILE        : defaults.tcl                            */
+#/*   Description : Default Synopsys Design Compiler Script */
+#/*   Usage       : dc_shell -tcl_mode -f default.tcl       */
+#/*   You'll need to minimally set design_name & read files */
+#/***********************************************************/
+set search_path [ list "./" "/afs/umich.edu/class/eecs470/lib/synopsys/" ]
+./ /afs/umich.edu/class/eecs470/lib/synopsys/
+set target_library "lec25dscc25_TT.db"
+lec25dscc25_TT.db
+set link_library [concat  "*" $target_library]
+* lec25dscc25_TT.db
+#/***********************************************************/
+#/* Set some flags to suppress warnings we don't care about */
+set suppress_errors [concat $suppress_errors "UID-401"]
+UID-401
+suppress_message {"VER-130"}
+#/***********************************************************/
+#/* The following five lines must be updated for every      */
+#/* new design                                              */
+#/***********************************************************/
+read_file -f sverilog [list "../sys_defs.vh" "../verilog/pipeline.v" "../verilog/if_stage.v" "../verilog/id_stage.v" "../verilog/ex_stage.v" "../verilog/mem_stage.v" "../verilog/mmu.v" "../verilog/wb_stage.v" "../verilog/regfile.v" "../verilog/fsm.v"]
+Loading db file '/afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db'
+Loading db file '/usr/caen/synopsys-synth-2012.06/libraries/syn/gtech.db'
+Loading db file '/usr/caen/synopsys-synth-2012.06/libraries/syn/standard.sldb'
+  Loading link library 'lec25dscc25_TT'
+  Loading link library 'gtech'
+Loading sverilog files: '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/sys_defs.vh' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/if_stage.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/id_stage.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/ex_stage.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/mem_stage.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/mmu.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/wb_stage.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/regfile.v' '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v' 
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/sys_defs.vh
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/if_stage.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/id_stage.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/ex_stage.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/mem_stage.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/mmu.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/wb_stage.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/regfile.v
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v
+
+Inferred memory devices in process
+	in routine pipeline line 237 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.v'.
+================================================================================
+|    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================
+| if_id_valid_inst_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|    if_id_NPC_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     if_id_IR_reg     | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     if_id_IR_reg     | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+================================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 294 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+| id_ex_backdoor_enable_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|       id_ex_NPC_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|       id_ex_IR_reg        | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|       id_ex_IR_reg        | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+|      id_ex_rega_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      id_ex_regb_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|   id_ex_opa_select_reg    | Flip-flop |   2   |  Y  | N  | N  | N  | Y  | N  | N  |
+|   id_ex_opb_select_reg    | Flip-flop |   2   |  Y  | N  | N  | N  | Y  | N  | N  |
+|  id_ex_dest_reg_idx_reg   | Flip-flop |   5   |  Y  | N  | N  | N  | N  | Y  | N  |
+|    id_ex_alu_func_reg     | Flip-flop |   5   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     id_ex_rd_mem_reg      | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     id_ex_wr_mem_reg      | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|   id_ex_cond_branch_reg   | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|  id_ex_uncond_branch_reg  | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|      id_ex_halt_reg       | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     id_ex_illegal_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|   id_ex_valid_inst_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+=====================================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 373 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.v'.
+======================================================================================
+|       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+======================================================================================
+| ex_mem_backdoor_enable_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|       ex_mem_NPC_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|       ex_mem_IR_reg        | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|       ex_mem_IR_reg        | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+|  ex_mem_dest_reg_idx_reg   | Flip-flop |   5   |  Y  | N  | N  | N  | N  | Y  | N  |
+|     ex_mem_rd_mem_reg      | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     ex_mem_wr_mem_reg      | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|      ex_mem_halt_reg       | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     ex_mem_illegal_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|   ex_mem_valid_inst_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|      ex_mem_rega_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|   ex_mem_alu_result_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|   ex_mem_take_branch_reg   | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+======================================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 451 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+| mem_wb_data_protected_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|      mem_wb_NPC_reg       | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|       mem_wb_IR_reg       | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|       mem_wb_IR_reg       | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+|      mem_wb_halt_reg      | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|    mem_wb_illegal_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|   mem_wb_valid_inst_reg   | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|  mem_wb_dest_reg_idx_reg  | Flip-flop |   5   |  Y  | N  | N  | N  | N  | Y  | N  |
+|  mem_wb_take_branch_reg   | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     mem_wb_result_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+=====================================================================================
+
+Inferred memory devices in process
+	in routine if_stage line 70 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/if_stage.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     PC_reg_reg      | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine if_stage line 82 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/if_stage.v'.
+=================================================================================
+|     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=================================================================================
+| if_valid_inst_out_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | Y  | N  |
+=================================================================================
+
+Statistics for case statements in always block at line 81 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/id_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           110            |    auto/auto     |
+|           112            |    auto/auto     |
+|           126            |    auto/auto     |
+|           128            |    auto/auto     |
+|           139            |    auto/auto     |
+|           149            |    auto/auto     |
+|           156            |    auto/auto     |
+|           168            |     no/auto      |
+|           213            |    auto/auto     |
+|           234            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 256 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/id_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           266            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine decoder line 256 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/id_stage.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    login_reg_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  pass_set_reg_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    password_reg     | Flip-flop |  21   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 411 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/id_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           413            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 50 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            52            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 101 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           103            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 164 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           166            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 177 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           182            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine regfile line 55 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/regfile.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    registers_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+===========================================================
+| block name/line  | Inputs | Outputs | # sel inputs | MB |
+===========================================================
+|    regfile/27    |   32   |   64    |      5       | N  |
+|    regfile/28    |   32   |   64    |      5       | N  |
+===========================================================
+Warning:  /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v:51: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v:134: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 47 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            51            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 128 in file
+	'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           134            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine fsm line 120 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    trigState_reg    | Flip-flop |   3   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine fsm line 169 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   untrigState_reg   | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine fsm line 177 in file
+		'/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/fsm.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    backdoor_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.db:pipeline'
+Loaded 12 designs.
+Current design is 'pipeline'.
+pipeline if_stage decoder id_stage alu brcond ex_stage mem_stage mmu wb_stage regfile fsm
+set design_name pipeline
+pipeline
+set clock_name clock
+clock
+set CLK_PERIOD 20
+20
+#/***********************************************************/
+#/* The rest of this file may be left alone for most small  */
+#/* to moderate sized designs.  You may need to alter it    */
+#/* when synthesizing your final project.                   */
+#/***********************************************************/
+set SYN_DIR ./
+./
+#/***********************************************************/
+#/* Set some flags for optimisation */
+set compile_top_all_paths "true"
+true
+set auto_wire_load_selection "false"
+false
+set compile_seqmap_synchronous_extraction "true"
+true
+#/***********************************************************/
+#/*  Clk Periods/uncertainty/transition                     */
+set CLK_TRANSITION 0.1
+0.1
+set CLK_UNCERTAINTY 0.1
+0.1
+set CLK_LATENCY 0.1
+0.1
+#/* Input/output Delay values */
+set AVG_INPUT_DELAY 0.1
+0.1
+set AVG_OUTPUT_DELAY 0.1
+0.1
+#/* Critical Range (ns) */
+set CRIT_RANGE 1.0
+1.0
+#/***********************************************************/
+#/* Design Constrains: Not all used                         */
+set MAX_TRANSITION 1.0
+1.0
+set FAST_TRANSITION 0.1
+0.1
+set MAX_FANOUT 32
+32
+set MID_FANOUT 8
+8
+set LOW_FANOUT 1
+1
+set HIGH_DRIVE 0
+0
+set HIGH_LOAD 1.0
+1.0
+set AVG_LOAD 0.1
+0.1
+set AVG_FANOUT_LOAD 10
+10
+#/***********************************************************/
+#/*BASIC_INPUT = cb18os120_tsmc_max/nd02d1/A1
+#BASIC_OUTPUT = cb18os120_tsmc_max/nd02d1/ZN*/
+set DRIVING_CELL dffacs1
+dffacs1
+#/* DONT_USE_LIST = {   } */
+#/*************operation cons**************/
+#/*OP_WCASE = WCCOM;
+#OP_BCASE = BCCOM;*/
+set WIRE_LOAD "tsmcwire"
+tsmcwire
+set LOGICLIB lec25dscc25_TT
+lec25dscc25_TT
+#/*****************************/
+#/* Sourcing the file that sets the Search path and the libraries(target,link) */
+set sys_clk $clock_name
+clock
+set netlist_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".vg"]
+./pipeline.vg
+set ddc_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".ddc"]
+./pipeline.ddc
+set rep_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".rep"]
+./pipeline.rep
+set dc_shell_status [ set chk_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".chk"] ]
+./pipeline.chk
+#/* if we didnt find errors at this point, run */
+if {  $dc_shell_status != [list] } {
+   current_design $design_name
+  link
+  set_wire_load_model -name $WIRE_LOAD -lib $LOGICLIB $design_name
+  set_wire_load_mode top
+  set_fix_multiple_port_nets -outputs -buffer_constants
+  create_clock -period $CLK_PERIOD -name $sys_clk [find port $sys_clk]
+  set_clock_uncertainty $CLK_UNCERTAINTY $sys_clk
+  set_fix_hold $sys_clk
+  group_path -from [all_inputs] -name input_grp
+  group_path -to [all_outputs] -name output_grp
+  set_driving_cell  -lib_cell $DRIVING_CELL [all_inputs]
+  remove_driving_cell [find port $sys_clk]
+  set_fanout_load $AVG_FANOUT_LOAD [all_outputs]
+  set_load $AVG_LOAD [all_outputs]
+  set_input_delay $AVG_INPUT_DELAY -clock $sys_clk [all_inputs]
+  remove_input_delay -clock $sys_clk [find port $sys_clk]
+  set_output_delay $AVG_OUTPUT_DELAY -clock $sys_clk [all_outputs]
+  set_critical_range $CRIT_RANGE [current_design]
+  set_max_delay $CLK_PERIOD [all_outputs]
+  set MAX_FANOUT $MAX_FANOUT
+  set MAX_TRANSITION $MAX_TRANSITION
+  uniquify
+  ungroup -all -flatten
+  redirect $chk_file { check_design }
+  compile -map_effort medium
+  write -hier -format verilog -output $netlist_file $design_name
+  write -hier -format ddc -output $ddc_file $design_name
+  redirect $rep_file { report_design -nosplit }
+  redirect -append $rep_file { report_area }
+  redirect -append $rep_file { report_timing -max_paths 2 -input_pins -nets -transition_time -nosplit }
+  redirect -append $rep_file { report_constraint -max_delay -verbose -nosplit }
+  remove_design -all
+  read_file -format verilog $netlist_file
+  current_design $design_name
+  redirect -append $rep_file { report_reference -nosplit }
+  quit
+} else {
+   quit
+}
+Current design is 'pipeline'.
+
+  Linking design 'pipeline'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (12 designs)              /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/verilog/pipeline.db, etc
+  lec25dscc25_TT (library)    /afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db
+
+Current design is 'pipeline'.
+Information: Updating graph... (UID-83)
+Warning: Design 'pipeline' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | G-2012.06-DWBB_201206.0 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 90 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'pipeline'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'pipeline_DW01_cmp2_0'
+  Processing 'pipeline_DW01_cmp2_1'
+  Processing 'pipeline_DW01_cmp6_0'
+  Processing 'pipeline_DW01_ash_0'
+  Processing 'pipeline_DW01_sub_0'
+  Processing 'pipeline_DW01_ash_1'
+  Processing 'pipeline_DW01_sub_1'
+  Processing 'pipeline_DW01_add_0'
+  Processing 'pipeline_DW01_cmp6_1'
+  Processing 'pipeline_DW01_cmp6_2'
+  Processing 'pipeline_DW01_cmp6_3'
+  Processing 'pipeline_DW01_add_1'
+  Processing 'pipeline_DW01_cmp6_4'
+  Processing 'pipeline_DW_rash_0'
+  Processing 'pipeline_DW02_mult_0'
+  Processing 'pipeline_DW01_add_2'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+  Mapping Optimization (Phase 3)
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:44 2029111.5      9.20     110.2    3019.3                                0.00
+    0:00:44 2029111.5      9.20     110.2    3019.3                                0.00
+    0:01:01 2293082.3      7.06      79.0     287.9                                0.00
+    0:01:01 2292874.0      7.06      79.2     287.9                                0.00
+    0:01:01 2292874.0      7.06      79.2     287.9                                0.00
+    0:01:02 2292915.5      7.04      78.9     287.9                                0.00
+    0:01:02 2292915.5      7.04      78.9     287.9                                0.00
+    0:01:02 2292915.5      7.04      78.9     287.9                                0.00
+    0:01:10 1537777.8      9.61     102.9      31.0                                0.00
+    0:01:12 1530096.7      9.10     100.0      31.0                                0.00
+    0:01:14 1530714.9      8.67      98.7      31.0                                0.00
+    0:01:14 1530566.1      8.66      98.7      31.0                                0.00
+    0:01:15 1530532.9      8.70      98.7      31.0                                0.00
+    0:01:15 1530591.6      8.66      98.6      31.0                                0.00
+    0:01:16 1530575.1      8.66      98.6      31.0                                0.00
+    0:01:16 1530591.6      8.66      98.6      31.0                                0.00
+    0:01:16 1530575.1      8.66      98.6      31.0                                0.00
+    0:01:17 1530591.6      8.66      98.6      31.0                                0.00
+    0:01:17 1530591.6      8.66      98.6      31.0                                0.00
+    0:01:17 1530591.6      8.66      98.6      31.0                                0.00
+    0:01:17 1530591.6      8.66      98.6      31.0                                0.00
+    0:01:17 1531288.4      8.66      98.6      24.0                                0.00
+    0:01:17 1531305.0      8.66      98.6      24.0                                0.00
+    0:01:17 1531305.0      8.66      98.6      24.0                                0.00
+    0:01:17 1531305.0      8.66      98.6      24.0                                0.00
+    0:01:17 1531305.0      8.66      98.6      24.0                                0.00
+    0:01:19 1535229.9      8.08      94.8      24.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:20 1539683.8      7.70      90.2      47.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:21 1545249.5      7.28      85.6      45.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:21 1550094.0      6.76      80.6      45.0                                0.00
+    0:01:22 1551405.1      6.64      79.0      45.0                                0.00
+    0:01:22 1551413.4      6.62      79.0      45.0                                0.00
+    0:01:23 1552393.8      6.59      78.6      45.0                                0.00
+    0:01:23 1554442.5      6.57      78.1      67.8                                0.00
+    0:01:24 1554393.1      6.53      77.3      67.8                                0.00
+    0:01:24 1554725.9      6.52      77.1      67.8                                0.00
+    0:01:25 1554941.6      6.52      76.6      67.8                                0.00
+    0:01:25 1554941.6      6.52      76.6      67.8                                0.00
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:25 1554941.6      6.52      76.6      67.8                                0.00
+    0:01:26 1560428.0      6.34      75.3      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:26 1564405.2      6.16      72.9      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:27 1567331.9      6.02      69.9      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:28 1570857.5      5.86      67.1      68.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:28 1574544.2      5.72      64.9      68.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:29 1578405.6      5.66      62.7      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:30 1582495.8      5.50      59.4      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:30 1583769.1      5.47      58.8      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:30 1586561.4      5.42      58.7      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:31 1590163.2      5.34      56.9      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:31 1593037.1      5.26      54.9      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:32 1593613.4      5.23      54.5      68.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:32 1596519.5      5.21      54.3      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:32 1597050.0      5.20      53.6      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:33 1599068.0      5.13      52.8      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:33 1600512.9      5.09      52.1      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:34 1602345.9      5.02      51.9      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:35 1603185.6      4.95      50.6      68.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:36 1605696.8      4.85      48.9      68.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:36 1607148.3      4.80      48.2      68.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:37 1608233.2      4.77      47.6      68.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:37 1608391.3      4.74      47.3      68.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:38 1611020.3      4.72      46.0      68.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:38 1609104.5      4.70      45.9      45.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:39 1609316.2      4.68      45.8      45.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:39 1609959.9      4.67      45.7      46.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:39 1610441.0      4.65      45.6      46.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:40 1611103.3      4.64      45.4      46.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:40 1613562.7      4.61      45.1      46.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:41 1616619.5      4.55      43.9      46.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:41 1618170.5      4.54      43.5      46.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:41 1619293.8      4.50      43.2      46.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:42 1621510.1      4.45      42.0      46.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:42 1624954.7      4.41      41.5      46.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:43 1626263.7      4.34      41.2      46.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:43 1628219.6      4.33      40.9      46.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:44 1629324.1      4.29      40.0      37.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:44 1630980.8      4.24      39.4      37.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:44 1631609.9      4.22      39.2      37.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:45 1633193.9      4.20      38.8      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:46 1636028.5      4.16      37.9      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:46 1637601.0      4.14      37.8      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:46 1639179.1      4.11      37.4      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:47 1640526.0      4.08      36.7      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:47 1643139.1      4.03      36.4      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:48 1645861.8      3.96      35.0      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:48 1646792.8      3.92      34.4      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:49 1648796.1      3.89      34.0      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:49 1650212.4      3.88      33.8      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:49 1652504.2      3.86      33.3      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:50 1653756.8      3.85      33.3      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:50 1656550.1      3.82      32.8      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:50 1657008.3      3.80      32.5      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:51 1657580.2      3.79      32.4      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:51 1659285.1      3.76      32.0      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:51 1660052.7      3.75      31.8      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:52 1661753.0      3.72      31.3      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:52 1661687.3      3.71      31.3      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:53 1662987.5      3.68      30.8      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:53 1663333.8      3.67      30.8      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:53 1663501.9      3.64      30.7      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:54 1663593.1      3.64      30.6      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:54 1663869.3      3.63      30.6      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:54 1663803.7      3.63      30.4      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:55 1664525.1      3.61      30.3      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:55 1664912.8      3.60      30.0      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:56 1666660.7      3.58      30.0      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:56 1667727.0      3.56      29.6      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:57 1669365.1      3.56      29.4      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:57 1671566.5      3.53      29.1      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:58 1672690.3      3.48      28.7      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:58 1673310.2      3.45      28.5      37.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:58 1674869.3      3.44      28.3      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:59 1676180.0      3.44      27.8      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:59 1676130.2      3.42      27.7      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:01:59 1676741.6      3.41      27.7      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:00 1678072.8      3.39      27.5      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:01 1680351.8      3.38      27.3      37.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:01 1682767.3      3.35      26.8      37.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:01 1683153.0      3.35      26.8      37.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:02 1683804.2      3.33      26.6      37.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:02 1684793.5      3.33      26.5      37.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:02 1685297.1      3.32      26.4      37.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:03 1686927.5      3.30      26.2      37.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:03 1687330.1      3.29      26.2      37.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:03 1688419.3      3.28      25.7      37.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:04 1689842.6      3.26      25.3      37.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:04 1689934.3      3.24      25.2      37.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:04 1690529.4      3.24      25.1      36.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:05 1690786.6      3.22      25.1      36.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:06 1693142.9      3.18      24.7      36.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:06 1693966.1      3.15      24.3      36.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:06 1695332.1      3.13      24.2      36.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:07 1695985.3      3.11      23.9      36.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:07 1698774.5      3.08      23.6      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:07 1699092.2      3.08      23.7      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:08 1700016.5      3.06      23.5      55.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:08 1701752.9      3.04      23.1      55.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:09 1702930.8      3.02      22.8      55.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:09 1704056.6      3.00      22.5      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:10 1704056.8      3.00      22.5      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:10 1704928.3      2.99      22.3      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:10 1706316.3      2.98      22.0      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:10 1706033.7      2.97      21.9      55.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:11 1706234.7      2.96      21.9      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:11 1706778.2      2.95      21.7      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:11 1706074.3      2.94      21.6      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:12 1706594.7      2.94      21.6      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:12 1707057.1      2.93      21.5      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:13 1708274.5      2.90      21.1      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:13 1708428.0      2.89      21.0      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:13 1708931.8      2.89      20.9      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:14 1709588.9      2.88      20.8      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:14 1709856.5      2.88      20.7      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:14 1710862.4      2.87      20.7      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:14 1711148.6      2.86      20.5      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:15 1711132.0      2.85      20.5      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:15 1712917.7      2.83      20.2      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:16 1713569.6      2.81      20.0      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:16 1715283.0      2.80      19.6      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:16 1715092.0      2.79      19.5      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:17 1715067.3      2.78      19.4      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:17 1714992.7      2.77      19.3      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:17 1715328.4      2.77      19.3      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:18 1715386.7      2.76      19.2      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:18 1715672.6      2.75      19.1      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:18 1715597.8      2.75      19.1      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:19 1715672.5      2.74      18.9      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:19 1715939.9      2.74      18.9      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:19 1716636.7      2.73      18.7      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:20 1717073.1      2.71      18.5      55.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:20 1717216.1      2.70      18.4      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:21 1717863.4      2.68      18.2      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:21 1718147.3      2.67      18.2      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:21 1718288.4      2.65      17.9      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:22 1718874.9      2.62      17.6      55.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:22 1721013.6      2.60      17.4      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:23 1721655.8      2.58      17.1      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:23 1721896.9      2.57      16.9      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:23 1722575.4      2.55      16.8      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:23 1723197.5      2.55      16.6      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:24 1723164.4      2.54      16.6      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:24 1723206.3      2.54      16.6      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:24 1724035.7      2.53      16.5      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:24 1724571.2      2.53      16.5      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:25 1724612.7      2.53      16.5      55.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:25 1725600.1      2.51      16.4      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:26 1725724.5      2.50      16.1      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:26 1726201.5      2.49      16.0      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:27 1726763.4      2.49      16.0      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:27 1727309.0      2.48      16.0      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:27 1727964.1      2.48      16.0      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:27 1728096.8      2.47      16.0      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:28 1729307.9      2.46      15.7      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:28 1729465.5      2.43      15.4      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:29 1729847.5      2.43      15.3      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:29 1730189.8      2.42      15.3      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:29 1731120.6      2.42      15.1      55.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:29 1732621.8      2.41      15.1      55.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:30 1732622.3      2.40      15.0      55.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:30 1732813.1      2.39      14.8      55.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:31 1732564.3      2.37      14.7      55.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:31 1733602.7      2.36      14.5      56.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:32 1733785.1      2.35      14.5      56.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:32 1736329.6      2.35      14.3      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:32 1737035.0      2.34      14.3      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:33 1737364.6      2.34      14.2      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:33 1737640.6      2.33      14.2      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:33 1738242.2      2.32      14.1      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:34 1738407.9      2.31      14.0      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:34 1739330.4      2.29      13.7      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:35 1739522.4      2.28      13.7      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:35 1740189.8      2.27      13.6      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:36 1741517.3      2.27      13.5      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:36 1741884.1      2.25      13.4      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:37 1742933.4      2.23      13.2      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:38 1743757.8      2.21      13.0      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:38 1744009.1      2.21      13.0      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:39 1745323.7      2.20      12.9      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:39 1745487.7      2.19      12.8      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:39 1745989.5      2.18      12.7      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:40 1746344.3      2.17      12.6      61.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:40 1746510.2      2.17      12.6      61.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:40 1746819.1      2.17      12.5      61.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:40 1747320.6      2.16      12.4      61.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:41 1747405.8      2.15      12.4      61.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:41 1747733.5      2.15      12.3      62.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:41 1748485.3      2.14      12.2      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:42 1748769.8      2.13      12.2      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:42 1749466.8      2.13      12.2      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:42 1749525.4      2.12      12.1      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:43 1749674.7      2.12      12.1      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:43 1749616.7      2.11      12.0      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:43 1750464.9      2.11      11.9      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:44 1750448.3      2.11      11.9      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:44 1750742.8      2.10      11.9      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:44 1751657.3      2.09      11.8      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:45 1752227.7      2.09      11.8      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:45 1752679.8      2.08      11.7      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:45 1753364.8      2.08      11.7      62.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:46 1753439.5      2.08      11.7      62.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:46 1753864.5      2.07      11.6      62.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:47 1753972.4      2.06      11.5      62.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:47 1754209.0      2.05      11.5      62.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:48 1753884.8      2.05      11.4      62.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:48 1754536.5      2.04      11.3      62.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:48 1755176.4      2.03      11.2      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:49 1755469.5      2.02      11.1      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:49 1755527.8      2.01      11.1      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:50 1755685.4      2.00      11.0      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:50 1756425.1      2.00      10.9      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:51 1757036.8      2.00      10.9      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:51 1757634.0      1.99      10.9      50.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:51 1758129.6      1.98      10.7      50.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:52 1758229.1      1.97      10.6      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:52 1758220.8      1.96      10.6      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:53 1759404.6      1.96      10.5      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:53 1759570.8      1.95      10.4      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:54 1759997.7      1.94      10.3      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:54 1760232.2      1.93      10.2      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:55 1760340.0      1.92      10.1      50.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:56 1760647.6      1.91      10.0      50.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:56 1761051.7      1.91      10.0      50.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:56 1761715.1      1.90      10.0      50.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:56 1761814.7      1.90      10.0      50.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:57 1763409.1      1.89       9.9      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:57 1763626.7      1.89       9.8      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:57 1763736.6      1.88       9.7      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:58 1764107.7      1.88       9.6      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:58 1764864.5      1.87       9.6      50.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:58 1764864.5      1.86       9.5      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:58 1765559.4      1.85       9.5      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:59 1766592.7      1.84       9.5      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:02:59 1767214.9      1.83       9.4      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:00 1767791.6      1.81       9.3      50.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:00 1768327.1      1.81       9.2      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:01 1768999.1      1.80       9.1      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:01 1769685.6      1.79       9.1      50.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:01 1770089.9      1.78       9.0      50.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:02 1770401.8      1.77       8.9      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:02 1771341.1      1.77       8.8      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:02 1771701.7      1.76       8.8      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:03 1772214.1      1.76       8.8      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:03 1773497.4      1.75       8.7      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:03 1773306.8      1.75       8.7      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:03 1773183.4      1.75       8.6      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:04 1773652.5      1.74       8.5      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:04 1773553.5      1.73       8.5      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:04 1773487.2      1.73       8.5      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:05 1774047.3      1.72       8.3      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:05 1774022.4      1.70       8.2      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:06 1774146.8      1.69       8.2      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:06 1774582.1      1.69       8.1      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:06 1775363.6      1.68       8.1      54.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:07 1775664.7      1.68       8.0      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:07 1777116.0      1.66       7.8      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:08 1777261.2      1.65       7.8      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:08 1777957.9      1.64       7.7      54.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:09 1779597.9      1.63       7.6      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:09 1779901.7      1.62       7.5      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:09 1780507.2      1.61       7.4      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:10 1780648.6      1.60       7.4      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:10 1780698.6      1.60       7.4      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:10 1781318.8      1.59       7.3      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:10 1781236.3      1.59       7.2      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:11 1781404.2      1.57       7.2      54.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:11 1781945.7      1.57       7.1      54.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:12 1782565.9      1.56       7.0      54.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:12 1783254.4      1.55       7.0      54.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:12 1783370.2      1.55       6.9      54.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:13 1783807.9      1.54       6.9      54.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:13 1781995.4      1.53       6.8      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:13 1781945.6      1.53       6.8      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:14 1781828.8      1.52       6.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:14 1782078.6      1.52       6.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:14 1781962.5      1.52       6.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:15 1781905.4      1.51       6.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:15 1781913.6      1.51       6.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:16 1782212.2      1.50       6.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:16 1782195.7      1.49       6.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:16 1782137.6      1.49       6.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:17 1782297.2      1.49       6.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:17 1782554.3      1.48       6.4      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:18 1782631.2      1.48       6.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:18 1782714.6      1.47       6.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:18 1783573.4      1.47       6.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:18 1783573.4      1.47       6.3      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:19 1783533.9      1.46       6.3      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:20 1783892.6      1.46       6.2      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:20 1784445.8      1.45       6.2      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:20 1785275.4      1.44       6.1      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:21 1785835.3      1.44       6.1      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:21 1786750.2      1.44       6.1      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:22 1787050.7      1.44       6.1      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:22 1786917.7      1.43       6.1      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:22 1786967.5      1.43       6.0      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:22 1788255.2      1.42       5.9      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:22 1788355.2      1.42       5.9      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:23 1788992.0      1.42       5.9      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:23 1789058.4      1.41       5.9      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:23 1789074.9      1.41       5.8      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:23 1789249.7      1.41       5.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:24 1789333.1      1.40       5.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:25 1789532.2      1.40       5.8      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:25 1789708.3      1.40       5.8      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:25 1789892.8      1.39       5.7      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:25 1789952.6      1.38       5.6      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:26 1790071.4      1.38       5.6      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:26 1790071.4      1.38       5.6      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:27 1790195.8      1.37       5.6      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:27 1790527.7      1.36       5.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:28 1790726.8      1.36       5.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:28 1790793.3      1.36       5.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:28 1790859.7      1.36       5.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:28 1790934.4      1.35       5.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:29 1791790.5      1.34       5.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:29 1792991.0      1.34       5.3      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:29 1792966.1      1.34       5.3      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:29 1793243.5      1.34       5.3      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:29 1793528.0      1.33       5.3      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:30 1794409.3      1.33       5.2      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:30 1794517.1      1.32       5.2      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:30 1795405.0      1.31       5.1      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:31 1795446.8      1.31       5.1      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:31 1796568.6      1.30       5.1      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:32 1796668.2      1.30       5.0      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:32 1796651.6      1.29       5.0      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:32 1797219.6      1.29       5.0      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:32 1797478.9      1.29       4.9      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:33 1798200.4      1.29       4.9      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:33 1798436.6      1.28       4.9      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:33 1798386.8      1.28       4.9      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:34 1798745.4      1.26       4.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:34 1798778.6      1.25       4.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:34 1799508.6      1.25       4.8      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:35 1799890.5      1.24       4.7      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:35 1799873.9      1.24       4.7      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:35 1800058.6      1.24       4.7      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:36 1800091.8      1.23       4.7      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:36 1800474.3      1.23       4.6      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:37 1800918.7      1.22       4.6      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:37 1800935.3      1.22       4.6      46.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:37 1801368.6      1.21       4.6      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:38 1801775.0      1.20       4.5      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:38 1802042.9      1.20       4.5      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:38 1802511.5      1.19       4.4      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:38 1802561.8      1.19       4.4      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:39 1802694.8      1.19       4.4      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:39 1803047.3      1.19       4.4      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:39 1803105.6      1.19       4.4      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:39 1803563.8      1.18       4.3      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:40 1803721.6      1.18       4.3      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:40 1803721.6      1.18       4.3      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:40 1803721.6      1.18       4.3      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:41 1804040.8      1.17       4.3      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:41 1804015.9      1.17       4.3      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:41 1804150.6      1.17       4.2      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:41 1804351.6      1.17       4.2      46.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:42 1804762.0      1.16       4.2      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:42 1804712.5      1.16       4.2      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:42 1804729.1      1.16       4.2      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:42 1805047.8      1.16       4.2      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:43 1805238.8      1.16       4.2      47.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:43 1805238.8      1.15       4.2      47.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:43 1805668.4      1.15       4.1      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:44 1805892.4      1.15       4.1      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:44 1805967.0      1.15       4.1      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:44 1806303.1      1.14       4.0      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:45 1806610.7      1.13       4.0      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:45 1806778.5      1.13       4.0      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:45 1806894.7      1.13       3.9      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:46 1806969.3      1.12       3.9      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:46 1806952.7      1.12       3.9      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:47 1807236.7      1.11       3.9      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:47 1808116.5      1.11       4.0      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:47 1808044.1      1.10       3.9      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:48 1808153.9      1.09       3.9      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:48 1808687.0      1.09       3.8      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:49 1808778.6      1.08       3.8      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:49 1808770.6      1.08       3.8      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:49 1808886.7      1.07       3.8      47.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:49 1809480.0      1.07       3.7      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:50 1809689.4      1.07       3.7      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:50 1809882.1      1.06       3.7      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:50 1809874.1      1.06       3.7      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:51 1810100.3      1.06       3.7      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:51 1810850.1      1.05       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:51 1811290.2      1.05       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:52 1811273.6      1.05       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:52 1811257.0      1.05       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:52 1811348.3      1.05       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:53 1811398.0      1.04       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:53 1811609.6      1.04       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:53 1811634.5      1.04       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:54 1811760.7      1.04       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:54 1811959.8      1.03       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:54 1811926.6      1.03       3.6      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:54 1811876.8      1.03       3.5      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:54 1812161.2      1.03       3.5      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:55 1812260.7      1.02       3.5      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:55 1812412.0      1.02       3.5      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:55 1813208.3      1.01       3.5      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:56 1813175.2      1.01       3.4      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:56 1813600.3      1.01       3.4      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:56 1813942.6      1.00       3.4      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:56 1813975.8      1.00       3.4      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:56 1814093.9      1.00       3.4      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:57 1814894.1      1.00       3.4      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:58 1815613.4      1.00       3.4      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:58 1815596.8      0.99       3.4      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:58 1815897.8      0.99       3.4      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:59 1815964.6      0.99       3.4      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:59 1815873.4      0.99       3.3      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:59 1815950.2      0.99       3.3      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:03:59 1816847.6      0.99       3.3      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:00 1817179.9      0.98       3.3      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:00 1817105.2      0.97       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:00 1817047.9      0.97       3.2      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:00 1817014.7      0.97       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:01 1817031.3      0.97       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:01 1817283.4      0.96       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:01 1817283.4      0.96       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:02 1817250.2      0.96       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:02 1817250.2      0.95       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:02 1817745.7      0.95       3.2      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:03 1817812.1      0.95       3.1      47.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:03 1818382.3      0.94       3.1      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:03 1818583.8      0.94       3.1      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:03 1818983.9      0.93       3.1      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:04 1819564.8      0.93       3.1      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:04 1819431.4      0.93       3.1      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:04 1819381.6      0.93       3.0      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:04 1819773.5      0.93       3.0      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:04 1819873.3      0.92       3.0      47.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:05 1820248.6      0.92       3.0      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:05 1820431.0      0.92       3.0      47.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:05 1820582.3      0.91       3.0      47.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:05 1820999.0      0.91       2.9      47.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:05 1820965.8      0.91       2.9      47.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:06 1821009.4      0.91       2.9      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:06 1820934.8      0.91       2.9      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:06 1821208.2      0.90       2.9      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:06 1821357.5      0.90       2.9      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:07 1821465.3      0.89       2.9      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:07 1821373.5      0.88       2.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:07 1821591.1      0.88       2.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:07 1821658.8      0.88       2.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:08 1822269.2      0.87       2.8      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:08 1822377.0      0.87       2.7      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:08 1822775.9      0.86       2.7      49.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:09 1823232.9      0.86       2.7      49.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:09 1823191.4      0.86       2.7      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:09 1823000.6      0.85       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:10 1823033.8      0.84       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:10 1823151.9      0.84       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:10 1823351.0      0.84       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:10 1823492.5      0.84       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:11 1823500.8      0.84       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:11 1823616.9      0.83       2.6      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:11 1824591.1      0.83       2.5      49.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:12 1824732.9      0.83       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:12 1824866.1      0.83       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:12 1825115.8      0.83       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:13 1825500.5      0.82       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:13 1825852.8      0.82       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:13 1826128.7      0.82       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:14 1825738.7      0.81       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:14 1825723.0      0.81       2.5      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:14 1826411.5      0.81       2.4      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:15 1826478.4      0.81       2.4      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:15 1826428.6      0.80       2.4      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:15 1826478.4      0.80       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:16 1826662.8      0.80       2.3      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:16 1826671.1      0.80       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:16 1827517.2      0.80       2.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:17 1827500.6      0.79       2.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:17 1827426.0      0.79       2.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:17 1827550.9      0.79       2.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:18 1827733.0      0.79       2.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:18 1827865.7      0.78       2.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:18 1827951.1      0.78       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:18 1828135.6      0.78       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:19 1828019.0      0.78       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:19 1828052.4      0.78       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:19 1828110.4      0.78       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:20 1828210.0      0.77       2.3      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:20 1828719.9      0.77       2.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:20 1828736.5      0.76       2.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:21 1829217.6      0.76       2.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:21 1829076.8      0.76       2.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:21 1829514.3      0.76       2.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:21 1829748.7      0.75       2.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:22 1829958.1      0.75       2.1      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:22 1830125.9      0.75       2.1      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:22 1830486.6      0.75       2.1      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:23 1830737.4      0.74       2.1      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:23 1831896.2      0.74       2.1      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:23 1831972.4      0.74       2.1      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:23 1832113.9      0.73       2.0      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:24 1832496.8      0.73       2.0      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:24 1832588.3      0.73       2.0      47.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:24 1832679.6      0.72       2.0      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:25 1832754.3      0.72       2.0      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:25 1832629.9      0.72       2.0      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:26 1832936.8      0.71       1.9      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:26 1832969.9      0.71       1.9      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:26 1833330.8      0.71       1.9      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:27 1833631.4      0.70       1.9      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:27 1833681.1      0.70       1.9      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:27 1833689.9      0.70       1.9      47.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:27 1833841.2      0.70       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:27 1833874.4      0.70       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:28 1834520.0      0.70       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:28 1834636.5      0.70       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:28 1834727.9      0.70       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:28 1834562.0      0.69       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:28 1834578.6      0.69       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:29 1834595.2      0.69       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:29 1834595.2      0.69       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:29 1834727.9      0.69       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:29 1834868.9      0.69       1.9      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:30 1834628.4      0.68       1.8      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:30 1834595.2      0.68       1.8      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:30 1834753.3      0.68       1.8      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:30 1834720.1      0.68       1.8      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:31 1834753.3      0.68       1.8      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:31 1834678.8      0.68       1.8      47.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:31 1835107.8      0.67       1.8      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:32 1835972.4      0.67       1.8      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:32 1836097.3      0.67       1.8      47.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:32 1837372.4      0.66       1.8      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:33 1837390.6      0.66       1.8      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:33 1837390.6      0.66       1.7      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:33 1837498.4      0.66       1.7      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:33 1837756.5      0.66       1.7      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:34 1838362.0      0.65       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:34 1838304.0      0.65       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:35 1838337.2      0.65       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:35 1838362.0      0.65       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:35 1838345.4      0.65       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:35 1838480.1      0.65       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:36 1838606.5      0.65       1.7      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:36 1838515.3      0.65       1.7      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:36 1838873.9      0.64       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:37 1838891.0      0.64       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:37 1839185.3      0.64       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:37 1839419.5      0.64       1.7      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:38 1839603.9      0.63       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:38 1839664.1      0.63       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:38 1839698.6      0.63       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:38 1840084.1      0.63       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:38 1840158.8      0.63       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:39 1840109.0      0.63       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:39 1840433.0      0.62       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:39 1840566.2      0.62       1.6      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:39 1840532.5      0.62       1.6      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:40 1840533.4      0.62       1.6      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:40 1840566.6      0.61       1.6      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:40 1841304.9      0.61       1.6      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:40 1841313.7      0.61       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:41 1841114.6      0.61       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:41 1841299.0      0.61       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:41 1841316.1      0.61       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:41 1841191.7      0.60       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:42 1841141.9      0.60       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:42 1841141.9      0.60       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:42 1841109.3      0.60       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:42 1841092.7      0.60       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:42 1841342.1      0.60       1.5      47.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:43 1841441.6      0.60       1.5      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:43 1841609.5      0.60       1.5      48.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:43 1842206.4      0.59       1.5      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:43 1842743.6      0.59       1.5      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:44 1843129.1      0.59       1.5      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:44 1843079.4      0.59       1.5      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:44 1843046.2      0.59       1.5      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:44 1843054.5      0.59       1.5      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:44 1843004.7      0.58       1.4      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:44 1843037.9      0.58       1.4      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:45 1843347.0      0.58       1.4      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:45 1843206.0      0.58       1.4      48.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:45 1843324.1      0.58       1.4      48.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:45 1843399.2      0.58       1.4      48.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:46 1843506.8      0.57       1.4      48.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:46 1843606.3      0.57       1.4      48.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:46 1843606.3      0.57       1.4      48.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:46 1843990.4      0.57       1.4      48.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:47 1843924.1      0.57       1.4      48.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:47 1843957.3      0.57       1.4      48.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:47 1843924.1      0.57       1.4      48.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:47 1843816.2      0.57       1.4      48.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:47 1843882.6      0.57       1.4      48.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:48 1843866.0      0.56       1.4      48.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:48 1844000.7      0.56       1.4      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:48 1844218.3      0.56       1.4      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:49 1844459.2      0.55       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:49 1844459.6      0.55       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:49 1844910.0      0.55       1.3      48.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:49 1845177.9      0.55       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:49 1845211.0      0.55       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:49 1845419.3      0.55       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:50 1845402.7      0.55       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:50 1845510.6      0.54       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:50 1845278.3      0.54       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:50 1845636.9      0.54       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:51 1845520.8      0.54       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:51 1845987.8      0.53       1.3      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:51 1846120.8      0.53       1.2      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:52 1846625.1      0.53       1.2      48.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:52 1846865.7      0.53       1.2      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:52 1846799.3      0.52       1.2      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:53 1847033.5      0.52       1.2      48.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:53 1847369.5      0.52       1.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:53 1847815.3      0.52       1.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:54 1847882.0      0.52       1.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:54 1847890.3      0.52       1.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:54 1847890.3      0.51       1.2      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:54 1847923.9      0.51       1.2      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:54 1847916.1      0.51       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:55 1847965.9      0.51       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:55 1847957.6      0.51       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:55 1847891.2      0.50       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:55 1848192.3      0.50       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:55 1848310.4      0.50       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:56 1848443.1      0.50       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:56 1848584.1      0.49       1.1      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:56 1848584.1      0.49       1.1      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:56 1848967.6      0.49       1.1      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:57 1849521.5      0.49       1.1      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:57 1849992.1      0.48       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:58 1850000.4      0.48       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:58 1849925.8      0.48       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:58 1850000.4      0.48       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:59 1850381.9      0.47       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:59 1850332.1      0.47       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:59 1850448.3      0.47       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:59 1850481.4      0.47       1.0      48.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:04:59 1850481.9      0.46       1.0      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:00 1850657.2      0.46       1.0      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:00 1850781.9      0.46       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:01 1850781.9      0.46       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:01 1850781.9      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:01 1850781.9      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:01 1850922.9      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:02 1850366.6      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:02 1850267.1      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:02 1850267.1      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:03 1850458.2      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:03 1850760.8      0.45       0.9      48.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:03 1850945.2      0.45       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:03 1851011.9      0.44       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:04 1851061.7      0.44       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:04 1851061.7      0.44       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:04 1851625.2      0.44       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:05 1851550.5      0.44       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:05 1851757.9      0.44       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:05 1851774.9      0.44       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:06 1851833.4      0.44       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:06 1851850.5      0.44       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:06 1852084.7      0.43       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:06 1852151.1      0.43       0.9      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:06 1852126.2      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:06 1852142.8      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:07 1852184.2      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:07 1852117.9      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:07 1852093.1      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:07 1852176.5      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:07 1852118.4      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:08 1852352.8      0.43       0.9      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:08 1852277.9      0.43       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:08 1852294.5      0.43       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:09 1852078.6      0.42       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:09 1852195.1      0.42       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:10 1852344.4      0.42       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:10 1852278.0      0.42       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:10 1852269.7      0.42       0.8      49.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:11 1852594.1      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:11 1852478.0      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:11 1852494.6      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:11 1852461.4      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:12 1852478.0      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:12 1852428.2      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:12 1852461.4      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:12 1852494.6      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:12 1852660.5      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:13 1852619.4      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:13 1852777.5      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:13 1852860.9      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:13 1852894.1      0.41       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:14 1853076.6      0.40       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:14 1853442.0      0.40       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:14 1853525.0      0.40       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:14 1853549.8      0.40       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:15 1853649.4      0.40       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:15 1853525.0      0.40       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:15 1853466.9      0.39       0.8      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:16 1853583.0      0.39       0.7      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:16 1853792.6      0.39       0.7      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:16 1854663.8      0.39       0.7      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:16 1854580.9      0.39       0.7      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:17 1854657.5      0.39       0.7      49.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:17 1855448.1      0.39       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:17 1856629.4      0.39       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:17 1856604.6      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:18 1856670.9      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:18 1856855.6      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:18 1856839.0      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:18 1856847.3      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:18 1856897.1      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:19 1857047.3      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:19 1857030.7      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:19 1857164.4      0.38       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:20 1857205.9      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:20 1857189.5      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:20 1857164.7      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:20 1857131.2      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:21 1857313.7      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:21 1857297.1      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:21 1857197.6      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:22 1857255.7      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:22 1857272.3      0.37       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:22 1857330.3      0.36       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:23 1857479.8      0.36       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:23 1857479.8      0.36       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:24 1857479.8      0.36       0.7      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:24 1858307.3      0.36       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:24 1858307.3      0.36       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:24 1858249.3      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:25 1858315.7      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:25 1858216.1      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:25 1858367.4      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:25 1858359.4      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:26 1858359.4      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:26 1858334.5      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:26 1858293.0      0.35       0.6      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:26 1858334.5      0.35       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:27 1858450.6      0.35       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:27 1858800.3      0.35       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:27 1858626.1      0.35       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:27 1858659.3      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:28 1858717.4      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:28 1858642.7      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:28 1858659.3      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:28 1858659.3      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:28 1858659.3      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:29 1858800.8      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:29 1858925.7      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:29 1859035.5      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:29 1859135.1      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:30 1859093.6      0.34       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:30 1859043.8      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:30 1859043.8      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:30 1859161.7      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:30 1858994.9      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:31 1859177.4      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:31 1859260.5      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:31 1859453.6      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:32 1859712.9      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:32 1859663.2      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:32 1859696.4      0.33       0.6      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:32 1859704.6      0.32       0.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:32 1859704.6      0.32       0.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:33 1859688.0      0.32       0.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:33 1859688.0      0.32       0.5      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:33 1859713.5      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:33 1859713.5      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:33 1859856.7      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:34 1859981.4      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:34 1860015.0      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:34 1859998.4      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:34 1859973.5      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:34 1859990.1      0.32       0.5      49.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:35 1860761.4      0.32       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:35 1860913.1      0.32       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:35 1860920.5      0.32       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:35 1860953.7      0.32       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:36 1861105.0      0.32       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:36 1861138.2      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:36 1861138.2      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:36 1861096.7      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:37 1861080.1      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:37 1861246.0      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:37 1861204.5      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:37 1861503.6      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:38 1861445.5      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:38 1861395.8      0.31       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:38 1861478.7      0.30       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:38 1861478.7      0.30       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:39 1861562.2      0.30       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:39 1861529.0      0.30       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:39 1861545.6      0.30       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:39 1861445.7      0.30       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:40 1861462.3      0.29       0.5      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:40 1861570.1      0.29       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:41 1861586.7      0.29       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:42 1861603.3      0.29       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:42 1861669.8      0.29       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:42 1861845.0      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:42 1861845.0      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:42 1861904.4      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:42 1861954.5      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:43 1862020.8      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:43 1862122.2      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:43 1862138.8      0.28       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:43 1862212.9      0.27       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:44 1862329.5      0.27       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:44 1862370.9      0.27       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:44 1862404.1      0.27       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:44 1862437.3      0.27       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:44 1862545.8      0.27       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:44 1862754.8      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:45 1862721.6      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:45 1862846.7      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:45 1862763.5      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:45 1862738.1      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:45 1862721.6      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:46 1862796.5      0.26       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:46 1862796.5      0.25       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:46 1862813.1      0.25       0.5      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:46 1862889.5      0.25       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:46 1863114.1      0.25       0.4      49.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:46 1862998.5      0.25       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:47 1863065.7      0.25       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:47 1863240.7      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:47 1863241.1      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:47 1863232.9      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:48 1863324.1      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:48 1863282.7      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:48 1863266.5      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:48 1863302.2      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:48 1863385.2      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:49 1863451.7      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:49 1863451.7      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:49 1863518.5      0.24       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:49 1863652.1      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:49 1863868.5      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:49 1863802.1      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:50 1863951.8      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:50 1864068.3      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:50 1864160.0      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:50 1864068.8      0.23       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:50 1864035.6      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:51 1864019.2      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:51 1864053.7      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:51 1864037.1      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:51 1864037.1      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:51 1863995.6      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:52 1863995.6      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:52 1864103.7      0.22       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:52 1864070.5      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:52 1864120.7      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:53 1864120.7      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:53 1864179.3      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:53 1864312.8      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:53 1864421.4      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:53 1864396.5      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:54 1864388.6      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:54 1864414.4      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:54 1864480.7      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:54 1864497.8      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:54 1864464.6      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:54 1864448.0      0.21       0.4      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:55 1864298.7      0.21       0.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:55 1864224.1      0.21       0.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:55 1864124.2      0.20       0.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:55 1864523.9      0.20       0.4      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:55 1864656.8      0.20       0.3      49.3 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:55 1864748.1      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:56 1864731.5      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:56 1864582.2      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:56 1864640.5      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:56 1864823.4      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:56 1864865.1      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:56 1864965.1      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:57 1865031.9      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:57 1865199.6      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:57 1865216.2      0.20       0.3      49.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:57 1865631.5      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:58 1865573.4      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:58 1865640.2      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:58 1865607.1      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:59 1865657.3      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:59 1865541.2      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:59 1865541.2      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:05:59 1865490.6      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:00 1865283.2      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:00 1865341.3      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:00 1865482.3      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:01 1865432.5      0.19       0.3      26.4 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:01 1865432.5      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:01 1865457.6      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:01 1865424.4      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:01 1865457.6      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:01 1865441.0      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:02 1865474.2      0.19       0.3      26.5 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:02 1865548.9      0.18       0.3      26.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:02 1865598.9      0.18       0.3      26.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:02 1865598.9      0.18       0.3      26.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:02 1865615.5      0.18       0.3      26.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:02 1865632.4      0.18       0.3      26.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:03 1865665.6      0.18       0.3      26.6 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:03 1865790.7      0.18       0.3      26.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:03 1865765.3      0.18       0.3      26.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:03 1865815.1      0.18       0.3      26.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:03 1865857.0      0.18       0.3      26.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:04 1866057.5      0.18       0.3      26.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:04 1866165.8      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:04 1866082.3      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:04 1866132.6      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:04 1866165.8      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:04 1866199.4      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:05 1866199.4      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:05 1866141.3      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:05 1866141.3      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:05 1866141.3      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:06 1866174.7      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:06 1866233.3      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:06 1866191.8      0.18       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:06 1866292.3      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:06 1866284.0      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:07 1866401.0      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:07 1866411.6      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:07 1866419.3      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:07 1866760.2      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:08 1866752.2      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:08 1866768.8      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:08 1866802.3      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:08 1866802.3      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:09 1866818.9      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:09 1866868.7      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:17 1866843.4      0.17       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:18 1867109.3      0.16       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:19 1867100.7      0.16       0.3      26.8 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:21 1867224.6      0.15       0.2      26.8                                0.00
+    0:06:26 1860026.7      0.15       0.2     345.3                                0.00
+
+
+  Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_fanout)
+  ----------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:06:27 1860026.7      0.15       0.2     345.3                               -4.85
+    0:06:29 1858002.8      0.15       0.2     324.2 ex_stage_0/alu_0/mult_65/net63771     -4.85
+    0:06:30 1858218.0      0.15       0.2     322.9 ex_stage_0/alu_0/mult_65/SUMB[47][3]     -4.85
+    0:06:31 1858293.6      0.15       0.2     322.6 ex_stage_0/alu_0/mult_65/SUMB[28][14]     -4.85
+    0:06:31 1858501.7      0.15       0.2     322.5 ex_stage_0/alu_0/mult_65/SUMB[2][61]     -4.85
+    0:06:32 1858702.4      0.15       0.2     268.8 proc2mem_data[7]              -4.83
+    0:06:32 1858702.4      0.15       0.2     268.6 pipeline_commit_NPC[37]       -4.83
+    0:06:34 1858403.8      0.14       0.2     268.1 ex_stage_0/alu_0/mult_65/net61893     -4.83
+    0:06:35 1858537.2      0.14       0.2     268.1 ex_stage_0/alu_0/mult_65/SUMB[51][1]     -4.83
+    0:06:36 1858720.9      0.14       0.2     171.7 net61139                      -4.83
+    0:06:38 1862517.5      0.14       0.2       2.7 id_stage_0/regf_0/registers_reg[31][42]/DIN     -0.08
+    0:06:38 1862810.3      0.14       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:38 1862793.7      0.14       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:39 1862818.6      0.14       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:39 1862777.2      0.13       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:39 1862777.2      0.13       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:40 1862810.4      0.13       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:40 1862495.2      0.13       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:41 1862495.7      0.12       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:41 1862579.2      0.12       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:42 1862978.4      0.12       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:42 1862953.6      0.12       0.2       2.7 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:42 1863164.9      0.11       0.2       2.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:43 1863148.3      0.11       0.2      12.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:44 1863190.0      0.11       0.2      12.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:44 1863173.7      0.11       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:45 1863405.4      0.11       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:45 1863405.4      0.11       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:45 1863389.3      0.11       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:46 1863439.0      0.11       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:47 1863763.1      0.11       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:47 1863779.7      0.10       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:47 1864081.0      0.10       0.2      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:48 1864257.1      0.10       0.1      13.9 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:48 1864240.5      0.10       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:48 1864240.5      0.10       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:49 1864356.7      0.10       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:49 1864464.9      0.10       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:49 1864481.5      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:50 1864995.8      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:50 1865137.3      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:50 1865178.8      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:51 1865394.9      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:51 1865345.2      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:51 1865328.6      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:52 1865328.6      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:52 1865279.0      0.09       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:52 1865345.4      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:53 1865237.3      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:53 1865628.4      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:53 1865975.0      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:54 1865975.0      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:54 1865983.3      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:54 1865983.3      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:54 1865999.9      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:55 1866041.8      0.08       0.1      14.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:55 1866508.8      0.08       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:55 1866759.6      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:56 1867060.2      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:56 1867026.8      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:56 1867026.8      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:56 1866945.4      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:57 1866804.3      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:57 1866911.7      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:57 1867127.6      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:57 1867169.4      0.07       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:58 1867227.5      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:58 1867244.1      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:58 1867310.5      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:58 1867484.5      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:59 1867659.2      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:59 1867911.6      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:59 1868085.3      0.06       0.1      14.1 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:06:59 1868026.2      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:00 1868034.7      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:00 1868051.3      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:00 1868093.2      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:01 1868076.6      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:01 1868076.6      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:01 1868043.5      0.05       0.1      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:01 1868060.5      0.05       0.0      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:02 1868153.0      0.05       0.0      14.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:02 1868261.3      0.05       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:02 1868402.3      0.05       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:03 1868335.5      0.05       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:03 1868551.1      0.05       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:03 1868584.3      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:03 1868526.6      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:04 1868534.9      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:04 1868444.3      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:04 1868477.5      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:05 1868486.0      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:05 1868577.3      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:05 1868560.7      0.04       0.0      15.2 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:09 1868619.0      0.04       0.0      15.2 ex_stage_0/alu_0/mult_65/SUMB[38][1]      0.00
+    0:07:09 1868595.0      0.04       0.0      15.0 ex_stage_0/alu_0/mult_65/SUMB[31][9]      0.00
+    0:07:10 1868662.0      0.04       0.0      14.9 ex_stage_0/alu_0/mult_65/SUMB[37][14]      0.00
+    0:07:11 1868662.0      0.04       0.0       4.9 ex_stage_0/alu_0/mult_65/net62277      0.00
+    0:07:12 1868803.3      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:13 1868803.3      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:13 1868853.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:14 1868795.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:14 1868853.3      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:14 1868861.6      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:14 1869087.5      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:14 1869087.5      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:15 1869253.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:15 1869438.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:15 1869521.3      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:16 1869881.9      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:16 1869840.5      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:16 1869915.7      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:16 1870015.8      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:17 1870198.7      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:17 1870190.4      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:18 1870207.5      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:18 1870449.4      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:19 1870325.0      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:19 1870432.8      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:19 1870490.9      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:19 1870458.1      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:20 1870474.7      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:20 1870574.6      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:20 1870599.5      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:20 1870591.2      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:21 1870541.9      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:21 1870608.9      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:21 1870608.9      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:21 1871380.6      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:22 1871397.2      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:22 1871596.8      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:22 1871596.8      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB      0.00
+    0:07:22 1871530.4      0.00       0.0       0.0                                0.00
+
+
+  Beginning Critical Range Optimization
+  -------------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:07:22 1871530.4      0.00       0.0       0.0                                0.00
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:07:22 1871530.4      0.00       0.0       0.0                                0.00
+    0:07:22 1871530.4      0.00       0.0       0.0                                0.00
+    0:07:22 1871530.4      0.00       0.0       0.0                                0.00
+    0:07:24 1855288.5      0.06       0.1       0.0                               -0.01
+    0:07:26 1846403.9      0.05       0.1       0.0                               -0.01
+    0:07:27 1841953.3      0.06       0.1       0.0                               -0.01
+    0:07:28 1839267.2      0.06       0.1       0.1                               -0.01
+    0:07:29 1837805.0      0.07       0.1       0.1                               -0.01
+    0:07:29 1836685.7      0.07       0.1       0.2                               -0.01
+    0:07:30 1835942.1      0.07       0.1       0.2                               -0.01
+    0:07:30 1835465.7      0.07       0.1       0.2                               -0.01
+    0:07:30 1835164.8      0.07       0.1       0.2                               -0.01
+    0:07:31 1834863.9      0.07       0.1       0.2                               -0.01
+    0:07:31 1834663.4      0.07       0.1       0.2                               -0.01
+    0:07:31 1834496.2      0.07       0.1       0.2                               -0.01
+    0:07:31 1834329.0      0.07       0.1       0.2                               -0.01
+    0:07:31 1834161.8      0.07       0.1       0.2                               -0.01
+    0:07:32 1833994.6      0.07       0.1       0.2                               -0.01
+    0:07:32 1833827.4      0.07       0.1       0.2                               -0.01
+    0:07:32 1833827.4      0.07       0.1       0.2                               -0.01
+    0:07:33 1834341.6      0.05       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:33 1834490.9      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:34 1834524.1      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:34 1833553.7      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:36 1833553.7      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:36 1833537.1      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:36 1833520.5      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:36 1833554.1      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:37 1833479.5      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:37 1833529.3      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:37 1833479.5      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:37 1833579.0      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:38 1833730.3      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:39 1833763.8      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:39 1833981.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:39 1833981.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:40 1833948.2      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:40 1834022.9      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:40 1834073.1      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.01
+    0:07:40 1834073.1      0.02       0.0       0.0                               -0.01
+    0:07:40 1834073.1      0.02       0.0       0.0                               -0.01
+    0:07:41 1834139.5      0.02       0.0       0.0                               -0.01
+    0:07:41 1834272.2      0.02       0.0       0.0                               -0.01
+    0:07:41 1834189.1      0.01       0.0       0.0                               -0.01
+    0:07:41 1834239.4      0.01       0.0       0.0                               -0.01
+    0:07:42 1834239.4      0.01       0.0       0.0                               -0.01
+    0:07:42 1834239.4      0.01       0.0       0.0                               -0.01
+    0:07:42 1834256.0      0.01       0.0       0.0                               -0.01
+    0:07:43 1834221.8      0.01       0.0       0.0                               -0.01
+    0:07:43 1834363.4      0.01       0.0       0.0                               -0.01
+    0:07:43 1834206.2      0.01       0.0       0.0                               -0.01
+    0:07:43 1834205.8      0.01       0.0       0.0                               -0.01
+    0:07:44 1834205.8      0.01       0.0       0.0                               -0.01
+    0:07:44 1834205.8      0.01       0.0       0.0                               -0.01
+    0:07:44 1834205.8      0.01       0.0       0.0                               -0.01
+    0:07:44 1834205.8      0.01       0.0       0.0                               -0.01
+    0:07:47 1776295.8      0.60       1.0       0.0                               -0.02
+    0:07:48 1771476.8      0.60       0.9       0.0                               -0.02
+    0:07:48 1771120.1      0.58       0.9       0.0                               -0.02
+    0:07:49 1771120.1      0.58       0.9       0.0                               -0.02
+    0:07:49 1771120.1      0.58       0.9       0.0                               -0.02
+    0:07:49 1771120.1      0.58       0.9       0.0                               -0.02
+    0:07:49 1771120.1      0.58       0.9       0.0                               -0.02
+    0:07:49 1771120.1      0.58       0.9       0.0                               -0.02
+    0:07:50 1773402.8      0.27       0.5       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:51 1774398.8      0.23       0.4       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:52 1774913.0      0.21       0.4       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:52 1775294.6      0.20       0.4       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:53 1775360.2      0.19       0.3       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:54 1775833.0      0.18       0.3       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:54 1775799.8      0.18       0.3       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:54 1775899.4      0.16       0.3       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:55 1776230.9      0.15       0.3       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:55 1776280.7      0.14       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:56 1776371.4      0.14       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:56 1776545.6      0.14       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:57 1776993.1      0.13       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:07:59 1777594.7      0.12       0.2       0.0 ex_mem_alu_result_reg[62]/CLRB     -0.02
+    0:07:59 1777829.2      0.12       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:00 1777862.4      0.12       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:00 1778003.7      0.11       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:01 1778410.9      0.11       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:02 1778603.0      0.11       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:02 1778586.4      0.10       0.2       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:02 1778868.4      0.10       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:03 1778934.8      0.10       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:03 1779118.2      0.10       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:03 1779309.0      0.10       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:04 1779658.6      0.09       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:04 1779941.3      0.09       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:05 1779858.3      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:05 1779858.3      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:05 1779858.3      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:06 1780057.9      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:06 1780190.1      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:06 1780282.2      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:06 1780315.8      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:06 1780315.8      0.08       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:07 1780373.9      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:07 1780340.7      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:08 1780398.8      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:08 1780415.4      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:08 1780373.9      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:08 1780356.8      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:09 1780714.0      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:09 1780738.8      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:09 1780890.4      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:10 1780815.2      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:10 1780865.0      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:10 1780889.9      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:10 1780906.5      0.07       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:11 1780939.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:11 1780939.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:11 1780939.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:11 1780939.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:12 1781074.0      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:12 1781090.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:12 1781223.3      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:13 1781281.4      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:13 1781389.2      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:13 1781389.2      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:13 1781372.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:14 1781372.6      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:14 1781472.5      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:14 1781506.0      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:15 1781572.3      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:15 1781588.9      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:15 1781664.5      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:16 1781739.1      0.06       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:16 1781739.1      0.05       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:16 1781739.1      0.05       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:16 1781739.1      0.05       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:17 1781772.3      0.05       0.1       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:17 1781855.2      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:18 1782187.0      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:18 1782120.7      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:18 1782120.7      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:19 1782237.2      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:19 1782237.2      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:19 1782303.6      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:19 1782303.6      0.05       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:19 1782287.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:20 1782446.6      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:20 1782587.8      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:20 1782654.1      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:21 1782620.9      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:21 1782679.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:21 1782737.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:21 1782737.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:21 1782994.7      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:22 1782969.6      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:22 1782953.0      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:22 1782969.6      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:23 1782944.7      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:23 1782961.5      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:23 1783027.9      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:24 1782994.7      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:24 1782994.7      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:25 1783186.1      0.04       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:25 1783352.0      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:26 1783326.9      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:26 1783368.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:27 1783368.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:27 1783477.6      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:27 1783510.8      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:28 1783577.2      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:28 1783660.1      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:28 1783910.4      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:28 1784261.2      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:29 1784211.1      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:29 1784211.1      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:29 1784244.3      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:29 1784261.3      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:30 1784489.2      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:30 1784572.7      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:31 1784448.2      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:31 1784548.1      0.03       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:31 1784815.5      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:32 1784815.5      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:32 1784833.0      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:32 1784833.0      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:32 1784908.1      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:32 1784941.2      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:33 1784974.4      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:33 1785057.4      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:33 1784982.7      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:33 1784982.7      0.02       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:34 1785181.8      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:34 1785181.8      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:35 1785107.1      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:35 1785090.5      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:36 1785091.0      0.01       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:36 1785165.7      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:37 1785182.2      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:37 1785256.9      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:37 1785373.5      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:38 1785373.9      0.00       0.0       0.0 ex_mem_alu_result_reg[63]/CLRB     -0.02
+    0:08:38 1785373.9      0.00       0.0       0.0                               -0.02
+    0:08:38 1785749.3      0.00       0.0       0.0                                0.00
+
+
+  Beginning Critical Range Optimization
+  -------------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:08:38 1785749.3      0.00       0.0       0.0                                0.00
+    0:08:38 1785882.4      0.00       0.0       0.0                                0.00
+Loading db file '/afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db'
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'pipeline' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'clock': 2891 load(s), 1 driver(s)
+Writing verilog file '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/synth/pipeline.vg'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 64 nets to module pipeline using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Writing ddc file './pipeline.ddc'.
+Removing design 'pipeline'
+Removing design 'pipeline_DW01_cmp6_0'
+Removing design 'pipeline_DW01_ash_1'
+Removing design 'pipeline_DW01_sub_1'
+Removing design 'pipeline_DW01_add_0'
+Removing design 'pipeline_DW01_add_1'
+Removing design 'pipeline_DW01_cmp6_4'
+Removing design 'pipeline_DW_rash_0'
+Removing design 'pipeline_DW02_mult_0'
+Removing library 'lec25dscc25_TT'
+Removing library 'gtech'
+Removing library 'standard.sldb'
+Loading db file '/afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db'
+Loading db file '/usr/caen/synopsys-synth-2012.06/libraries/syn/gtech.db'
+Loading db file '/usr/caen/synopsys-synth-2012.06/libraries/syn/standard.sldb'
+  Loading link library 'lec25dscc25_TT'
+  Loading link library 'gtech'
+Loading verilog file '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/synth/pipeline.vg'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Performing 'read' command.
+Compiling source file /afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/synth/pipeline.vg
+Reading with netlist reader (equivalent to -netlist option).
+Verilog netlist reader completed successfully.
+Current design is now '/afs/umich.edu/user/z/h/zhangjy/573/eecs573/vsimple_f13/synth/pipeline_DW01_cmp6_0.db:pipeline_DW01_cmp6_0'
+Loaded 9 designs.
+Current design is 'pipeline_DW01_cmp6_0'.
+Current design is 'pipeline'.
+
+Thank you...
