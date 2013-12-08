@@ -1,5 +1,6 @@
 	setpwd	0x01234
 	login	0x01234
+
 	lda	$r5,0x1
 	lda	$r1,0x1000
 loop:	mulq	$r5,0x0a,$r2
