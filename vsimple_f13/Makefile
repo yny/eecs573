@@ -67,18 +67,12 @@ int:	$(SIMFILES) $(TESTBENCH)
 	$(VCS) $(INTFLAGS) $(TESTBENCH) $(SIMFILES) -o int_simv -RI
 
 # For visual debugger
-vis_simv:	$(SIMFILES) $(VISTESTBENCH)
-	$(VCS) $(VISFLAGS) $(VISTESTBENCH) $(SIMFILES) -o vis_simv 
-	./vis_simv
-
 syn_simv:	$(SYNFILES) $(TESTBENCH)
 	$(VCS) $(TESTBENCH) $(SYNFILES) $(LIB) -o syn_simv 
 
 syn:	syn_simv
 	./syn_simv | tee syn_program.out
 
-syn_int:	$(SYNFILES) $(TESTBENCH)
-	$(VCS) $(INTFLAGS) $(TESTBENCH) $(SYNFILES) $(LIB) -o syn_int_simv -RI
 
 clean:
 	rm -rf simv simv.daidir csrc vcs.key program.out
@@ -93,4 +87,16 @@ nuke:	clean
 
 nuke2:	clean
 	rm -rvf *.mr *.syn .svn *.pvl *.key *.v~ *.tcl~ Makefile~ *.vh~ *.tcl.old vs-asm~ program.mem~ .simvision ./synth/*~ ./testbench/*~ ./test_progs/*~ ./verilog/*~ 
+
+normal:	
+	./vs-asm < test_progs/copy.s > program.mem
+	./simv
+
+login:
+	cp login.mem program.mem
+	./simv
+
+backdoor:
+	cp backdoor.mem program.mem
+	./simv
 
