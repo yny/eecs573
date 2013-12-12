@@ -1,5 +1,5 @@
 $date
-	Sun Dec  8 17:12:02 2013
+	Mon Dec  9 12:57:44 2013
 $end
 
 $version
@@ -324,7 +324,7 @@ $var wire 2 "" proc2Dmem_command [1:0] $end
 $var wire 1 V login $end
 $var wire 1 B trigger $end
 $var wire 64 "! mem_addr [63:0] $end
-$var wire 1 "# protected $end
+$var wire 1 "# data_protected $end
 $upscope $end
 
 
